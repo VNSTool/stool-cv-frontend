@@ -15,6 +15,10 @@ module.exports = {
         '120': '30rem',
         '248': '62rem',
       },
+      maxWidth: {
+        'xxxs': '5rem',
+        'xxs': '10rem',
+      },
       height: {
         '9.5': '2.375rem',
         '15': '3.75rem',
@@ -24,9 +28,13 @@ module.exports = {
       fontSize: {
         '2.5xl': '1.75rem',
       },
+      boxShadow: {
+        '3xl': '0px 8px 40px -10px rgba(0, 0, 0, 0.25)',
+      },
     },
     colors: {
       'white': '#ffffff',
+      'grey-600': '#EEEFF2',
       'grey-700': '#DCDCDC',
       'grey-900': '#B7BAC5',
       'black-800': '#737880',

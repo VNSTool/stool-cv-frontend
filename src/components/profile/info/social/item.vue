@@ -1,29 +1,32 @@
 <template>
+  <div
+    class="group select-none flex flex-row items-center -ml-3 first:ml-0 p-0.5 bg-white rounded-full cursor-pointer"
+    :class="{
+      '!bg-ghost-200': selected && !copied,
+      'mr-4': selected,
+      '!bg-ghost-300': copied,
+    }"
+    @mousedown="mouseDown"
+    @mouseup="mouseUp"
+  >
+    <div class="w-9.5 h-9.5 rounded-full" :style="backgroundStyle"></div>
     <div
-      class="group flex flex-row items-center -ml-3 first:ml-0 p-0.5 bg-white rounded-full cursor-pointer"
-      :class="{ '!bg-ghost-200': selected && !copied, 'mr-4': selected, '!bg-ghost-300': copied }"
-      @mousedown="mouseDown"
-      @mouseup="mouseUp"
+      class="max-w-0 truncate text-xl leading-6 font-light text-black-900 ease-in duration-500"
+      :class="{ '!max-w-xxxs sm:!max-w-xxs lg:!max-w-xs ml-1 mr-1.5': selected }"
     >
-      <div
-        class="w-9.5 h-9.5 rounded-full"
-        :style="backgroundStyle"
-      >
-      </div>
-      <div
-        class="max-w-0 truncate width-transition text-xl leading-6 font-light text-black-900"
-        :class="{ '!max-w-xs ml-1 mr-1.5' : selected }"
-      >
-        {{social.contactDetail}}
-      </div>
+      {{ social.contactDetail }}
     </div>
+  </div>
 </template>
 
 <script>
-import Vue from 'vue'
+import Vue from "vue";
+import { v4 as uuidv4 } from "uuid";
+
+import { capitalizeFirstLetter } from "~/utils/string";
 
 export default Vue.extend({
-  data: function() {
+  data: function () {
     return {
       clicked: false,
       copied: false,
@@ -31,23 +34,28 @@ export default Vue.extend({
   },
   props: {
     social: Object,
-    selectedSocial: String
+    selectedSocial: String,
   },
   methods: {
-    mouseDown: function() {
-      this.$emit('selectSocial');
+    mouseDown: function () {
+      this.$emit("selectSocial");
 
       if (this.selected) {
         this.copied = true;
+        this.$store.commit("notifications/add", {
+          id: uuidv4(),
+          type: "basic",
+          content: `Copied ${capitalizeFirstLetter(this.social.id)}`,
+        });
 
-        const el = document.createElement('textarea');
+        const el = document.createElement("textarea");
         el.value = this.social.copyContent;
-        el.setAttribute('readonly', '');
-        el.style.position = 'absolute';
-        el.style.left = '-9999px';
+        el.setAttribute("readonly", "");
+        el.style.position = "absolute";
+        el.style.left = "-9999px";
         document.body.appendChild(el);
         el.select();
-        document.execCommand('copy');
+        document.execCommand("copy");
         document.body.removeChild(el);
       }
     },
@@ -55,25 +63,19 @@ export default Vue.extend({
       if (this.selected) {
         this.copied = false;
       }
-    }
+    },
   },
   computed: {
-    backgroundStyle: function() {
+    backgroundStyle: function () {
       return {
         backgroundImage: `url('${this.social.image}')`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: '100% 100%',
-      }
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "100% 100%",
+      };
     },
-    selected: function() {
+    selected: function () {
       return this.selectedSocial === this.social.id;
-    }
-  }
-})
+    },
+  },
+});
 </script>
-
-<style lang="scss" scoped>
-  .width-transition {
-    transition: max-width 1s ease-in;
-  }
-</style>
