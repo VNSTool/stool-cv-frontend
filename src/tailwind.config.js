@@ -32,7 +32,7 @@ module.exports = {
         '2.5xl': '1.75rem',
       },
       boxShadow: {
-        '2xl-dark': '0px 0px 30px -0px rgba(255, 255, 255, 0.25)',
+        '2xl-dark': '0px 0px 30px -5px rgba(255, 255, 255, 0.25)',
         '3xl': '0px 8px 40px -10px rgba(0, 0, 0, 0.25)',
       },
       spacing: {
