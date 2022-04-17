@@ -1,0 +1,3 @@
+export const DISPLAY_MODE_LIGHT = "DISPLAY_MODE_LIGHT";
+export const DISPLAY_MODE_DARK = "DISPLAY_MODE_DARK";
+export const DISPLAY_MODE_LOCAL_STORAGE_KEY = "displayMode";

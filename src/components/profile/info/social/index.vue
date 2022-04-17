@@ -4,7 +4,7 @@
       v-for="social in socials"
       :key="social.id"
       :social="social"
-      :selectedSocial="selectedSocial"
+      :selected="selectedSocial===social.id"
       @selectSocial="selectSocial(social)"
     />
   </div>

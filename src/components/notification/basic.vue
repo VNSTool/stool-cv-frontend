@@ -1,6 +1,6 @@
 <template>
   <div
-    class="select-none truncate flex rounded-full bg-grey-600 text-xl leading-6 font-light text-black-900 shadow-md ease-in duration-500"
+    class="select-none truncate flex rounded-full bg-ghost-200 text-xl leading-6 font-light text-black-900 shadow-md ease-in duration-500"
     :class="transitionStyle"
   >
     {{ notification.content }}
