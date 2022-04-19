@@ -16,9 +16,10 @@ import {
   DISPLAY_MODE_LIGHT,
   DISPLAY_MODE_DARK,
 } from "~/constants/display-mode";
+import { ICON_MOON, ICON_SUN } from "~/constants/icons";
 
 export default Vue.extend({
-  data: function() {
+  data: function () {
     return {
       onMouseDown: false,
     };
@@ -31,28 +32,23 @@ export default Vue.extend({
     iconClass: function () {
       switch (this.mode) {
         case DISPLAY_MODE_DARK:
-          return "icon-moon";
+          return ICON_MOON;
 
         case DISPLAY_MODE_LIGHT:
         default:
-          return "icon-sun";
+          return ICON_SUN;
       }
     },
-    backgroundClass: function() {
-      if (this.onMouseDown) {
-        return '!bg-ghost-300 dark:!bg-black-800';
-      }
-
-      if (this.selected) {
-        return 'bg-ghost-200 dark:bg-black';
-      }
-
-      return '';
-    }
+    backgroundClass: function () {
+      return {
+        "!bg-ghost-300 dark:!bg-black-800": this.onMouseDown,
+        "bg-ghost-200 dark:bg-black": this.selected && !this.onMouseDown,
+      };
+    },
   },
   methods: {
     mouseDown() {
-      this.$emit('selectMode');
+      this.$emit("selectMode");
       this.onMouseDown = true;
     },
     mouseUp() {

@@ -2,7 +2,7 @@
   <div
     class="flex flex-row items-center p-1.5 rounded-full bg-ghost-100 dark:bg-black-950 shadow-3xl dark:shadow-2xl-dark"
   >
-    <StickyTopDarkModeToggleDisplayMode
+    <StickyTopDisplayModeToggleItem
       v-for="mode in displayModes"
       :key="mode"
       :mode="mode"
@@ -15,6 +15,7 @@
 
 <script>
 import Vue from "vue";
+import { mapMutations } from 'vuex'
 
 import {
   DISPLAY_MODE_LIGHT,
@@ -31,9 +32,9 @@ export default Vue.extend({
     };
   },
   methods: {
-    selectMode(mode) {
-      this.$store.commit('changeDisplayMode', mode)
-    },
+    ...mapMutations({
+      selectMode: 'changeDisplayMode',
+    }),
   },
   computed: {
     selectedMode: function() {

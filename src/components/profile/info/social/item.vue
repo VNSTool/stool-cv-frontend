@@ -9,7 +9,10 @@
     @mousedown="mouseDown"
     @mouseup="mouseUp"
   >
-    <div class="w-9.5 h-9.5 rounded-full bg-no-repeat bg-cover" :style="backgroundStyle"></div>
+    <div
+      class="w-9.5 h-9.5 rounded-full bg-no-repeat bg-cover"
+      :style="backgroundStyle"
+    ></div>
     <div
       class="max-w-0 truncate text-xl leading-6 font-light text-black-900 dark:text-grey-700 ease-in duration-500"
       :class="{
@@ -27,6 +30,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import { capitalizeFirstLetter } from "~/utils/string";
 import { NOTIFICATION_TYPE_BASIC } from "~/constants/notification";
+import { copyToClipboard } from "~/utils/string";
 
 export default Vue.extend({
   data: function () {
@@ -51,15 +55,7 @@ export default Vue.extend({
           content: `Copied ${capitalizeFirstLetter(this.social.id)}`,
         });
 
-        const el = document.createElement("textarea");
-        el.value = this.social.copyContent;
-        el.setAttribute("readonly", "");
-        el.style.position = "absolute";
-        el.style.left = "-9999px";
-        document.body.appendChild(el);
-        el.select();
-        document.execCommand("copy");
-        document.body.removeChild(el);
+        copyToClipboard(this.social.copyContent);
       }
     },
     mouseUp: function () {
