@@ -9,10 +9,10 @@
       class="whitespace-normal break-words text-xl leading-6 text-black-900 font-light"
       v-html="childEvent.title"
     />
-    <div
-      class="whitespace-normal break-words text-xl leading-6 text-black-900 font-light mt-3"
-      v-if="childEvent.description"
-      v-html="childEvent.description"
+    <ExperienceHistoryTimeLineEventChildEventDescriptions
+      v-if="childEvent.descriptions"
+      :descriptions="childEvent.descriptions"
+      class="mt-3"
     />
     <div v-if="childEvent.details" class="mt-2">
       <div
@@ -24,15 +24,11 @@
           v-html="detail.title"
           class="whitespace-normal break-words text-xl leading-6 text-black-900 font-light"
         />
-        <div v-if="detail.contents" class="mt-1">
-          <div
-            v-for="(content, index) in detail.contents"
-            :key="index"
-            class="whitespace-normal break-words text-xl leading-6 text-black-900 font-light mt-1 first:mt-0"
-          >
-            <div v-html="content" />
-          </div>
-        </div>
+        <ExperienceHistoryTimeLineEventChildEventDescriptions
+          v-if="detail.descriptions"
+          :descriptions="detail.descriptions"
+          class="mt-1"
+        />
       </div>
     </div>
   </div>
