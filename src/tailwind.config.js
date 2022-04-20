@@ -37,6 +37,7 @@ module.exports = {
       },
       spacing: {
         '12.5': '3.125rem',
+        '22': '5.5rem',
       },
       transitionProperty: {
         'color-custom': 'color, background-color'

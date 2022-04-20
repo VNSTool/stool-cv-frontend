@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-row">
-    <div class="flex flex-col items-center h-64 w-20 bg-grey-700">
+    <div class="flex flex-col items-center w-20">
       <div
         v-if="start"
         class="w-4 h-4 rounded-full border-2 border-black-800"
@@ -8,7 +8,14 @@
       <div class="flex-1 dashed-line"></div>
       <div v-if="stop" class="w-4 h-4 rounded-full border-2 border-black-800" />
     </div>
-    <div class="flex flex-1 h-64 bg-grey-900"></div>
+    <div class="flex flex-1 flex-col py-10 ml-2">
+      <ExperienceHistoryTimeLineEvent
+        v-for="event in events"
+        :key="event.id"
+        :event="event"
+        class="mt-10 first:mt-0"
+      />
+    </div>
   </div>
 </template>
 
@@ -19,6 +26,7 @@ export default Vue.extend({
   props: {
     start: Boolean,
     stop: Boolean,
+    events: Array,
   },
 });
 </script>

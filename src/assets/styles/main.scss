@@ -1,6 +1,11 @@
 html {
-    font-family: 'Roboto', sans-serif;
-    letter-spacing: -1px;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: -1px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: underline 1px;
+  text-underline-offset: 1px;
 }
