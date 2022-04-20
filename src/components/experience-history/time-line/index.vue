@@ -13,6 +13,10 @@
         v-for="event in events"
         :key="event.id"
         :event="event"
+        :selectedChildEvent="selectedChildEvent"
+        @selectChildEvent="
+          (childEventId) => $emit('selectChildEvent', childEventId)
+        "
         class="mt-10 first:mt-0"
       />
     </div>
@@ -27,6 +31,7 @@ export default Vue.extend({
     start: Boolean,
     stop: Boolean,
     events: Array,
+    selectedChildEvent: String,
   },
 });
 </script>

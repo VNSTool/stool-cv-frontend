@@ -1,6 +1,6 @@
 <template>
   <div
-    class="group select-none flex flex-row items-center -ml-3 first:ml-0 p-0.5 bg-white dark:bg-black rounded-full cursor-pointer"
+    class="select-none flex flex-row items-center -ml-3 first:ml-0 p-0.5 bg-white dark:bg-black rounded-full cursor-pointer"
     :class="{
       '!bg-ghost-200 dark:!bg-black': selected && !copied,
       'mr-4': selected,

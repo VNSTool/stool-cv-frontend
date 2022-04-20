@@ -1,9 +1,11 @@
 <template>
   <div class="w-screen" :class="displayModeClass">
-    <div class="transition-color-custom ease-in duration-200 w-full h-full flex flex-row justify-center dark:bg-black">
-      <StickyTop />
-      <Notification />
-      <div class="w-full lg:w-248 sm:p-4 lg:px-0 lg:py-28">
+    <div class="w-full h-full flex flex-row justify-center dark:bg-black">
+      <StickyTop class="z-10" />
+      <Notification class="z-20" />
+      <div
+        class="w-full lg:w-248 sm:p-4 lg:px-0 lg:py-28"
+      >
         <Nuxt />
       </div>
     </div>

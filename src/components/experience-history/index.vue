@@ -7,6 +7,8 @@
         :start="index === 0"
         :stop="index === timeLines.length - 1"
         :events="timeLine.events"
+        :selectedChildEvent="selectedChildEvent"
+        @selectChildEvent="selectChildEvent"
         class="first:ml-0 lg:flex-1 lg:ml-20"
       />
     </div>
@@ -21,6 +23,7 @@ export default Vue.extend({
   data: function () {
     return {
       title: "Experience History",
+      selectedChildEvent: "",
       timeLines: [
         {
           id: uuidv4(),
@@ -84,7 +87,7 @@ export default Vue.extend({
                     '<span class="font-medium">Outsource</span> for <a target="_blank" href="https://www.integrosys.com/">Integro</a> ' +
                     'and <a target="_blank" href="https://www.sacombank.com.vn/en/Pages/Default.aspx">Sacombank</a>',
                   descriptions: [
-                    "Integro provides banking solution for Sacombank and hire FPT as technical outsourcing",
+                    "Integro provides banking solution for Sacombank and hire FPT as technical outsourcing",
                   ],
                   details: [
                     {
@@ -245,6 +248,12 @@ export default Vue.extend({
         },
       ],
     };
+  },
+  methods: {
+    selectChildEvent: function (childEventId) {
+      console.log(11, childEventId);
+      this.selectedChildEvent = childEventId;
+    },
   },
 });
 </script>
