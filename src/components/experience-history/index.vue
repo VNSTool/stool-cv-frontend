@@ -144,7 +144,7 @@ export default Vue.extend({
                   title:
                     '<span class="font-medium">Start working</span> at <a target="_blank" href="https://www.nfq-asia.com/en">NFQ Vietnam</a>',
                   descriptions: [
-                    "Develop Human Resource ‘s management system using NestJS, ReactJS and AngularJS",
+                    "Develop Human Resource's management system using NestJS, ReactJS and AngularJS",
                     "The software is used by internal departments and employees",
                   ],
                 },
@@ -251,7 +251,6 @@ export default Vue.extend({
   },
   methods: {
     selectChildEvent: function (childEventId) {
-      console.log(11, childEventId);
       this.selectedChildEvent = childEventId;
     },
   },
