@@ -16,7 +16,14 @@ import Vue from "vue";
 
 export default Vue.extend({
   props: {
-    event: Object,
+    event: {
+      type: Object,
+      default: function () {
+        return {
+          childEvents: [],
+        };
+      },
+    },
     selectedChildEvent: String,
   },
 });

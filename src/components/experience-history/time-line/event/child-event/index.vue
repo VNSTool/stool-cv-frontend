@@ -44,7 +44,17 @@ import Vue from "vue";
 
 export default Vue.extend({
   props: {
-    childEvent: Object,
+    childEvent: {
+      type: Object,
+      default: function () {
+        return {
+          time: "",
+          title: "",
+          descriptions: [],
+          details: [],
+        };
+      },
+    },
     selected: Boolean,
   },
   computed: {
