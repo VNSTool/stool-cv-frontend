@@ -37,10 +37,8 @@ module.exports = {
       },
       spacing: {
         12.5: "3.125rem",
+        15: "3.75rem",
         22: "5.5rem",
-      },
-      transitionProperty: {
-        "color-custom": "color, background-color",
       },
       zIndex: {
         1: "1",
@@ -52,6 +50,11 @@ module.exports = {
         7: "7",
         8: "8",
         9: "9",
+      },
+      gridTemplateColumns: {
+        2: "repeat(2, minmax(0, 1fr))",
+        3: "repeat(3, minmax(0, 1fr))",
+        4: "repeat(4, minmax(0, 1fr))",
       },
     },
     colors: {
@@ -70,4 +73,5 @@ module.exports = {
     },
   },
   plugins: [],
+  safelist: ["grid-cols-2", "grid-cols-3", "grid-cols-4"],
 };
