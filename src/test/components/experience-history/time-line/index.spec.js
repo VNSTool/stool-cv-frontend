@@ -22,7 +22,7 @@ describe("ExperienceHistoryTimeLine", () => {
     });
 
     const time = wrapper.find(".w-20");
-    const timeContents = time.findAll("div > div > div");
+    const timeContents = time.findAll("div > div > div > div");
     expect(timeContents.length).toBe(2);
     expect(timeContents.at(0).classes()).toEqual(
       expect.arrayContaining(["rounded-full"])
@@ -41,7 +41,7 @@ describe("ExperienceHistoryTimeLine", () => {
     });
 
     const time = wrapper.find(".w-20");
-    const timeContents = time.findAll("div > div > div");
+    const timeContents = time.findAll("div > div > div > div");
     expect(timeContents.length).toBe(2);
     expect(timeContents.at(0).classes()).toEqual(
       expect.arrayContaining(["dashed-line"])
@@ -60,7 +60,7 @@ describe("ExperienceHistoryTimeLine", () => {
     });
 
     const time = wrapper.find(".w-20");
-    const timeContents = time.findAll("div > div > div");
+    const timeContents = time.findAll("div > div > div > div");
     expect(timeContents.length).toBe(1);
     expect(timeContents.at(0).classes()).toEqual(
       expect.arrayContaining(["dashed-line"])
