@@ -1,0 +1,14 @@
+version: "2.4"
+
+services:
+  web:
+    image: node:16.14.2-alpine3.14
+    working_dir: /stool/cv
+    volumes:
+      - ../src:/stool/cv
+    container_name: stool-cv
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - yarn dev
+    ports:
+      - "3000:3000"
