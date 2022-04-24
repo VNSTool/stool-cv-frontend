@@ -34,9 +34,17 @@ export default Vue.extend({
       type: String,
       default: "",
     },
+    selected: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     fillColor: function () {
+      if (this.selected) {
+        return "#4A4DE6";
+      }
+
       const displayMode = this.$store.state.displayMode;
 
       switch (displayMode) {
