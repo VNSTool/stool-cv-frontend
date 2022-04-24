@@ -4,6 +4,7 @@
       <SkillsAggregationEvaluation
         v-for="(skill, index) in skills"
         :key="skill.id"
+        :id="skill.id"
         :title="skill.title"
         :pathD="skill.pathD"
         :selected="selectedSkill === skill.id"
@@ -44,16 +45,7 @@ export default Vue.extend({
           (skill) => skill.id === this.selectedSkill
         )[0]) !== undefined
       ) {
-        return [
-          {
-            title: "Strength",
-            list: skill.strengths,
-          },
-          {
-            title: "Weakness",
-            list: skill.weaknesses,
-          },
-        ];
+        return skill.detail;
       }
     },
   },

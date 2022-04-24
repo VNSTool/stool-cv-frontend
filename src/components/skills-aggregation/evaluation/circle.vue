@@ -7,7 +7,7 @@
     xmlns="http://www.w3.org/2000/svg"
   >
     <circle cx="60" cy="60" r="41.5" stroke="#4A4DE6" stroke-dasharray="4 4" />
-    <mask id="path-2-inside-1_117_103" fill="white">
+    <mask :id="'path-2-inside-' + id" fill="white">
       <path :d="pathD" />
     </mask>
     <path
@@ -15,7 +15,7 @@
       :fill="fillColor"
       stroke="#4A4DE6"
       stroke-width="2"
-      mask="url(#path-2-inside-1_117_103)"
+      :mask="'url(#path-2-inside-' + id"
       class="transition-colors ease-in duration-200"
     />
   </svg>
@@ -30,6 +30,10 @@ import {
 
 export default Vue.extend({
   props: {
+    id: {
+      type: String,
+      default: "",
+    },
     pathD: {
       type: String,
       default: "",

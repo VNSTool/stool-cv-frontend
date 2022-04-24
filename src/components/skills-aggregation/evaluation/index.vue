@@ -5,7 +5,11 @@
       :class="containerBackgroundClass"
       @click="$emit('selectSkill')"
     >
-      <SkillsAggregationEvaluationCircle :pathD="pathD" :selected="selected" />
+      <SkillsAggregationEvaluationCircle
+        :id="id"
+        :pathD="pathD"
+        :selected="selected"
+      />
       <div
         class="mt-5 text-xl leading-6 text-black-900 dark:text-grey-700 font-light"
       >
@@ -20,6 +24,10 @@ import Vue from "vue";
 
 export default Vue.extend({
   props: {
+    id: {
+      type: String,
+      default: "",
+    },
     title: {
       type: String,
       default: "",

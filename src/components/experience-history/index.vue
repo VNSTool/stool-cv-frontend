@@ -144,8 +144,24 @@ export default Vue.extend({
                   title:
                     '<span class="font-medium">Start working</span> at <a target="_blank" href="https://www.nfq-asia.com/en">NFQ Vietnam</a>',
                   descriptions: [
-                    "Develop Human Resource's management system using NestJS, ReactJS and AngularJS",
-                    "The software is used by internal departments and employees",
+                    "Develop Human Resource's management system. The software is used by internal departments and employees",
+                  ],
+                  details: [
+                    {
+                      id: uuidv4(),
+                      title: '<span class="font-medium">Backend</span>',
+                      descriptions: ["Nodejs with NestJS framework"],
+                    },
+                    {
+                      id: uuidv4(),
+                      title: '<span class="font-medium">Frontend</span>',
+                      descriptions: ["ReactJS", "AngularJS"],
+                    },
+                    {
+                      id: uuidv4(),
+                      title: '<span class="font-medium">Database</span>',
+                      descriptions: ["MariaDB"],
+                    },
                   ],
                 },
                 {

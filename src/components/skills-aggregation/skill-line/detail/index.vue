@@ -1,6 +1,6 @@
 <template>
   <div
-    class="transition-color px-4 sm:px-10 ease-in duration-200 rounded-lg bg-ghost-200 dark:bg-black w-full"
+    class="px-4 sm:px-10 ease-in duration-200 rounded-lg bg-ghost-200 dark:bg-black w-full"
     :class="containerClass"
   >
     <SkillsAggregationSkillLineDetailBlock
