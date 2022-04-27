@@ -1,0 +1,14 @@
+version: "2.4"
+
+services:
+  web:
+    image: 132344050580.dkr.ecr.ap-southeast-1.amazonaws.com/nodejs/alpine:v0.1
+    working_dir: /stool/cv
+    volumes:
+      - ../src:/stool/cv
+    container_name: stool-cv
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - yarn dev
+    ports:
+      - "3000:3000"
