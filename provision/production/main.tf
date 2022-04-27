@@ -108,7 +108,7 @@ data "aws_ami" "linux" {
     name = "name"
 
     // to upload stool ami (linux with docker inside)
-    values = ["stool-amazon-linux-docker-v0.2"]
+    values = ["stool-amazon-linux-docker-v0.4"]
   }
 
   filter {
