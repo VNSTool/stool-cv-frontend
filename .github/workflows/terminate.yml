@@ -1,4 +1,4 @@
-name: Terminate production
+name: Production - Terminate
 
 on:
   workflow_dispatch:
