@@ -138,7 +138,7 @@ resource "aws_launch_configuration" "launch_configuration" {
   security_groups = [
     module.ec2_security_group.this_security_group_id
   ]
-  user_data = data.template_file.user_data.rendered_user_data
+  user_data = data.template_file.user_data.rendered
   key_name = local.key_name
   iam_instance_profile = local.ec2_role
   associate_public_ip_address = true
