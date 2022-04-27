@@ -33,11 +33,9 @@ cat >docker-compose.yaml <<EOL
 version: "2.4"
 
 services:
-    php:
-        image: ${REGISTRY}/graphql/php:${IMAGE_TAG}
+    web:
+        image: ${REGISTRY}/curriculum-vitae/web:${IMAGE_TAG}
         working_dir: /stool/cv
-        volumes:
-            - ../src:/stool/cv
         container_name: stool-cv
         entrypoint: ["/bin/sh", "-c"]
         command:
@@ -47,5 +45,5 @@ services:
         
 EOL
 
-su ec2-user -c "$(aws ecr get-login --no-include-email --region ${AWS_REGION})"
+su ec2-user -c "docker login --username AWS --password $(aws ecr get-login-password  --region ${AWS_REGION}) ${REGISTRY}"
 su ec2-user -c "docker-compose up --force-recreate -d"
