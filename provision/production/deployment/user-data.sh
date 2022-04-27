@@ -6,7 +6,8 @@ set -xe
 ########################################
 cat >r53-record-update.json <<EOF
 {
-    "Changes": [{
+    "Changes": [
+        {
             "Action": "UPSERT",
             "ResourceRecordSet": {
                 "Name": "curriculumvitae.stool.vn",
@@ -18,7 +19,7 @@ cat >r53-record-update.json <<EOF
                     "Value": "$(curl -sS http://169.254.169.254/latest/meta-data/public-ipv4)"
                 }]
             }
-        },
+        }
     ]
 }
 EOF
