@@ -1,5 +1,5 @@
 provider "aws" {
-  region = var.region
+  region = local.region
   version = "3.59.0"
   # For local env only
   # shared_credentials_file = "/tmp/.aws/credentials"
@@ -30,7 +30,7 @@ resource "aws_route_table" "external" {
 }
 
 resource "aws_subnet" "ec2_subnet_a_graphql" {
-  vpc_id = var.vpc_id
+  vpc_id = local.vpc_id
   cidr_block = "10.0.0.0/28"
   availability_zone = "ap-southeast-1a"
   tags = merge(
@@ -47,7 +47,7 @@ resource "aws_route_table_association" "shared_routing_table_with_public_subnet_
 }
 
 resource "aws_subnet" "ec2_subnet_b_graphql" {
-  vpc_id = var.vpc_id
+  vpc_id = local.vpc_id
   cidr_block = "10.0.0.16/28"
   availability_zone = "ap-southeast-1b"
   tags = merge(
@@ -70,8 +70,8 @@ resource "aws_route_table_association" "shared_routing_table_with_public_subnet_
 module "ec2_security_group" {
   source                        = "terraform-aws-modules/security-group/aws"
   version                       = "v3.1.0"
-  name                          = "${var.resource_name}-ec2"
-  vpc_id                        = var.vpc_id
+  name                          = "${local.resource_name}-ec2"
+  vpc_id                        = local.vpc_id
 
 // to check again
   ingress_with_cidr_blocks      = [
@@ -87,9 +87,9 @@ module "ec2_security_group" {
   egress_rules                  = ["all-all"]
 
   tags = merge(
-    var.common_tags,
+    local.common_tags,
     map(
-      "Name", "${var.resource_name}-ec2"
+      "Name", "${local.resource_name}-ec2"
     )
   )
 }
