@@ -1,7 +1,7 @@
 name: deploy on release
 
 on:
-  push:
+  workflow_dispatch:
     tags:
       - "v*.*.*"
 
@@ -29,24 +29,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
-
-      - name: Install dependencies
-        run: docker-compose -f environments/ci.yml run install-dependencies
-
-      - name: Build nuxt
-        run: docker-compose -f environments/ci.yml run build
-
-      - name: Build, tag, and push image to Amazon ECR
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          IMAGE_TAG: ${{ github.ref_name }}-${{ env.ENV }}
-        run: |
-          REGISTRY=$ECR_REGISTRY IMAGE_TAG=$IMAGE_TAG docker-compose -f ./environments/build.yml build --force-rm
-          REGISTRY=$ECR_REGISTRY IMAGE_TAG=$IMAGE_TAG docker-compose -f ./environments/build.yml push
-
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v2
         with:
@@ -58,16 +40,16 @@ jobs:
           STATE: ${{ PROJECT }}/${{ env.ENV }}/${{ github.ref_name }}/terraform.tfstate
         run: terraform init -backend-config "key=$STATE" -force-copy -input=false
 
-      - name: Terraform plan
+      - name: Terraform plan destroy
         working-directory: ./provision/production
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           VERSION: ${{ github.ref_name }}
-        run: terraform plan -var="app_version=$VERSION" -var="registry=$ECR_REGISTRY"
+        run: terraform plan -destroy -var="app_version=$VERSION" -var="registry=$ECR_REGISTRY"
 
-      - name: Terraform apply
+      - name: Terraform destroy
         working-directory: ./provision/production
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           VERSION: ${{ github.ref_name }}
-        run: terraform apply -auto-approve -var="app_version=$VERSION" -var="registry=$ECR_REGISTRY"
+        run: terraform destroy -auto-approve -var="app_version=$VERSION" -var="registry=$ECR_REGISTRY"
