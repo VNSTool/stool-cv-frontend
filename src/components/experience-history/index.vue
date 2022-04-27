@@ -193,7 +193,7 @@ export default Vue.extend({
                     {
                       id: uuidv4(),
                       title: '<span class="font-medium">DevOps</span>',
-                      descriptions: ["Teamcity, Docker, Terraform, NewRelic"],
+                      descriptions: ["Docker, Teamcity, Terraform, NewRelic"],
                     },
                     {
                       id: uuidv4(),

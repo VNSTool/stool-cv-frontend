@@ -1,0 +1,6 @@
+services:
+  web:
+    image: ${REGISTRY}/curriculum-vitae/web:${IMAGE_TAG}
+    build:
+      context: ../
+      dockerfile: ./environments/web/Dockerfile
