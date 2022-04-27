@@ -2,7 +2,7 @@ locals {
   resource_name = "stool-${local.app_env}-${local.app_name}-${var.app_version}"
   common_tags = {
     App       = local.app_name
-    Env       = var.app_env
+    Env       = local.app_env
     Name      = local.resource_name
     ManagedBy = "terraform"
     Workload  = "internal-tools"
