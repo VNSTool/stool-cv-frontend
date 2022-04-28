@@ -200,7 +200,7 @@ export default Vue.extend({
                       id: uuidv4(),
                       title: '<span class="font-medium">AWS services</span>',
                       descriptions: [
-                        "EC2, AutoScaling, ELB",
+                        "EC2, AutoScaling, ELB, VPC",
                         "S3, RDS, ElastiCache, Athena, SQS",
                         "API Gateway, AppSync, Lambda Function",
                         "R53, ECR, Cloudwatch, CloudFormation",
