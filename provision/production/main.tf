@@ -82,6 +82,10 @@ module "ec2_security_group" {
     {
       rule        = "http-80-tcp"
       cidr_blocks = "0.0.0.0/0"
+    },
+    {
+      rule        = "https-443-tcp"
+      cidr_blocks = "0.0.0.0/0"
     }
   ]
   egress_rules                  = ["all-all"]
