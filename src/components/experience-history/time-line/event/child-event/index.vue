@@ -5,7 +5,7 @@
       :class="backgroundClass"
     ></div>
     <div
-      class="transition-color-custom ease-in duration-200 absolute w-20 top-0 -left-22 text-center text-xl leading-6 text-black-900 dark:text-grey-700 font-light group-hover:font-medium bg-ghost-100 dark:bg-black-950"
+      class="transition-colors ease-in duration-200 absolute w-20 top-0 -left-22 text-center text-xl leading-6 text-black-900 dark:text-grey-700 font-light group-hover:font-medium bg-ghost-100 dark:bg-black-950"
       :class="timeClass"
     >
       {{ childEvent.time }}
