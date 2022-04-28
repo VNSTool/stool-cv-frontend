@@ -42,6 +42,17 @@ services:
             - yarn start
         ports:
             - "3000:3000"
+        restart: always
+
+    nginx:
+        image: ${REGISTRY}/curriculum-vitae/nginx:${IMAGE_TAG}
+        container_name: stool-nginx
+        depends_on:
+            - web
+        ports:
+            - 80:80
+            - 443:443
+        restart: always
         
 EOL
 
