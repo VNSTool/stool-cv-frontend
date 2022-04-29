@@ -242,6 +242,8 @@ export default Vue.extend({
     },
   },
   mounted() {
+    this.selectedSkill = this.skills[0].id;
+
     if (process.client) {
       this.calculateLineSize();
 
