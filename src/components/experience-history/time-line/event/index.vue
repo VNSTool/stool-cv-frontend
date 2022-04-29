@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col cursor-pointer">
+  <div class="flex flex-col">
     <ExperienceHistoryTimeLineEventChildEvent
       v-for="childEvent in event.childEvents"
       :key="childEvent.id"

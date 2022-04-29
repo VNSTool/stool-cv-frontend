@@ -9,6 +9,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      minWidth: {
+        35: "8.75rem",
+        42: "10.5rem",
+      },
       width: {
         7.5: "1.875rem",
         9.5: "2.375rem",
@@ -70,6 +74,7 @@ module.exports = {
       "ghost-200": "#E6EDFF",
       "ghost-300": "#CCDBFF",
       majorelle: "#4A4DE6",
+      transparent: "transparent",
     },
   },
   plugins: [],

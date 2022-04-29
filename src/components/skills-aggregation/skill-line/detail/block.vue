@@ -6,7 +6,7 @@
       >
         {{ detail.title }}
       </div>
-      <ul>
+      <ul class="mt-2">
         <li
           class="list-item list-disc list-inside ml-2 whitespace-normal break-words text-xl leading-6 text-black-900 dark:text-grey-700 font-light"
           v-for="item in detail.list"
