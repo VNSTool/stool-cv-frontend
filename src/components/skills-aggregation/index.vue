@@ -58,7 +58,7 @@ export default Vue.extend({
               list: [
                 "Can work with ReactJS, VueJS, Google AMP",
                 "Can work with Figma, Zeplin",
-                "Eager to implement the design on pixel standard",
+                "Strive to implement the design on pixel standard",
                 "Can do unit test",
               ],
             },
@@ -172,7 +172,7 @@ export default Vue.extend({
               title: "Strength",
               list: [
                 "Can understand the business quickly",
-                "Eager to understand deeply company business because it is good for work",
+                "Strive to understand deeply company business because it is good for work",
                 "Have experience on banking and e-commerce",
               ],
             },

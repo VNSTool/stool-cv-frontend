@@ -6,7 +6,6 @@ services:
     working_dir: /stool/cv
     volumes:
       - ../src:/stool/cv
-    container_name: stool-cv
     entrypoint: ["yarn", "install"]
 
   build:
@@ -14,6 +13,4 @@ services:
     working_dir: /stool/cv
     volumes:
       - ../src:/stool/cv
-    container_name: stool-cv
     entrypoint: ["yarn", "build"]
-

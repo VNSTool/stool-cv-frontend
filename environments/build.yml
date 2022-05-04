@@ -5,7 +5,7 @@ services:
       context: ../
       dockerfile: ./environments/web/Dockerfile
 
-  ngix:
+  nginx:
     image: ${REGISTRY}/curriculum-vitae/nginx:${IMAGE_TAG}
     build:
       context: ./nginx
