@@ -3,6 +3,7 @@
     <CommonInputBase placeholder="Input your email" class="w-full" />
     <div class="flex flex-col mt-10">
       <JobDetailUploadUploadBox />
+      <JobDetailUploadOnlineJobDetail class="mt-10" />
     </div>
   </CommonInformationBox>
 </template>

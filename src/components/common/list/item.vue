@@ -46,7 +46,8 @@ export default Vue.extend({
   computed: {
     uploadingClass: function () {
       return {
-        "!text-grey-900": this.isUploading,
+        "!text-grey-900 dark:!text-black-800":
+          this.isUploading && this.showUpload,
       };
     },
   },

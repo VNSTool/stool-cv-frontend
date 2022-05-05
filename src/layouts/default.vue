@@ -4,7 +4,7 @@
       <StickyTop class="z-10" />
       <Notification class="z-20" />
       <div
-        class="w-full lg:w-248 sm:p-4 lg:px-0 lg:py-28"
+        class="w-full lg:w-248 pb-28 sm:px-4 sm:pt-4 lg:px-0 lg:pt-28"
       >
         <Nuxt />
       </div>
