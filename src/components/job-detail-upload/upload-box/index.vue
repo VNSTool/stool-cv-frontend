@@ -31,6 +31,7 @@
         @change="selectFile"
       />
     </div>
+    <CommonList :items="displayList" @removeItem="removeFile" class="mt-5" />
   </div>
 </template>
 
@@ -45,6 +46,14 @@ export default Vue.extend({
       acceptTypes: ["application/pdf"],
       maxSize: 5 * 1024 * 1024,
     };
+  },
+  computed: {
+    displayList: function () {
+      return this.uploadItems.map((item) => ({
+        id: item.id,
+        title: item.file.name,
+      }));
+    },
   },
   methods: {
     dropFile(ev) {
@@ -64,10 +73,12 @@ export default Vue.extend({
       for (let i = 0; i < ev.target.files.length; i++) {
         this.insertFile(ev.target.files[i]);
       }
+
+      ev.target.value = "";
     },
     insertFile(file) {
       if (
-        this.acceptTypes.indexOf(file.type) !== -1 &&
+        this.acceptTypes.includes(file.type) &&
         file.size <= this.maxSize &&
         !this.checkExistedFile(file)
       ) {
@@ -86,6 +97,12 @@ export default Vue.extend({
       }
 
       return false;
+    },
+    removeFile(id) {
+      this.uploadItems.splice(
+        this.uploadItems.findIndex((item) => item.id === id),
+        1
+      );
     },
   },
 });

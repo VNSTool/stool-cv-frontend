@@ -33,6 +33,7 @@ module.exports = {
         42: "10.5rem",
       },
       fontSize: {
+        2: "0.5rem",
         "2.5xl": "1.75rem",
       },
       boxShadow: {

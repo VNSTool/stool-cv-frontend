@@ -13,7 +13,7 @@ import Vue from "vue";
 export default Vue.extend({
   data: function () {
     return {
-      title: "Share me job detail",
+      title: "Share me job",
     };
   },
 });
