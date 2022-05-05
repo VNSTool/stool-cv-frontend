@@ -40,8 +40,6 @@ services:
         entrypoint: ["/bin/sh", "-c"]
         command:
             - yarn start
-        ports:
-            - "3000:3000"
         restart: always
 
     nginx:
@@ -56,5 +54,5 @@ services:
         
 EOL
 
-su ec2-user -c "docker login --username AWS --password $(aws ecr get-login-password  --region ${AWS_REGION}) ${REGISTRY}"
+su ec2-user -c "docker login --username AWS --password $(aws ecr get-login-password --region ${AWS_REGION}) ${REGISTRY}"
 su ec2-user -c "docker-compose up --force-recreate -d"
