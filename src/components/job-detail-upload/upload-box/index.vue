@@ -93,7 +93,6 @@ export default Vue.extend({
       ) {
         const itemId = uuidv4();
         const cancelSource = axios.CancelToken.source();
-        console.log(111, cancelSource);
         this.uploadItems.push({
           id: itemId,
           file,
@@ -125,9 +124,7 @@ export default Vue.extend({
           .then((response) => {
             this.updateFileUrl(itemId, response.data.fileUrl);
           })
-          .catch((error) => {
-            console.log(124, error);
-          });
+          .catch((error) => {});
       }
     },
     updateFileUrl(id, fileUrl) {
@@ -136,7 +133,6 @@ export default Vue.extend({
       ].fileUrl = fileUrl;
     },
     updateFileUploadPercentage(id, percentage) {
-      console.log(111, percentage);
       this.uploadItems[
         this.uploadItems.findIndex((item) => item.id === id)
       ].uploadPercentage = percentage;
@@ -155,7 +151,6 @@ export default Vue.extend({
       const itemIndex = this.uploadItems.findIndex((item) => item.id === id);
       const item = this.uploadItems[itemIndex];
       if (item.uploadPercentage !== 100) {
-        console.log(111);
         item.cancelUpload();
       }
       this.uploadItems.splice(itemIndex, 1);

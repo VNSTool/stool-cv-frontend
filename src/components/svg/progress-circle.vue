@@ -11,7 +11,7 @@
       :stroke-dasharray="perimeter"
       :stroke-dashoffset="dashOffset"
       :transform="`rotate(-90 ) translate(-${height} 0)`"
-      class="transition-stroke-offset duration-75 stroke-black-900 dark:stroke-grey-700"
+      class="transition-stroke-offset duration-200 stroke-black-900 dark:stroke-grey-700"
     />
   </svg>
 </template>
