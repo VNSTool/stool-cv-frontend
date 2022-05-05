@@ -1,19 +1,12 @@
 <template>
   <ul class="px-2">
-    <li
+    <CommonListItem
       v-for="(item, index) in items"
       :key="index"
-      class="list-item list-disc ml-2 mt-1 first:mt-0"
-    >
-      <div class="flex flex-row items-center">
-        <div
-          class="whitespace-normal break-words text-xl leading-6 text-black-900 dark:text-grey-700 font-light"
-        >
-          {{ item.title }}
-        </div>
-        <CommonListRemoveIcon @click.native="$emit('removeItem', item.id)" />
-      </div>
-    </li>
+      :item="item"
+      :showUpload="showUpload"
+      @removeItem="(id) => $emit('removeItem', id)"
+    />
   </ul>
 </template>
 
@@ -27,6 +20,10 @@ export default Vue.extend({
       default: function () {
         return [];
       },
+    },
+    showUpload: {
+      type: Boolean,
+      default: false,
     },
   },
 });

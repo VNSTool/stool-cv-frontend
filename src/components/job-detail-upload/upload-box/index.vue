@@ -8,12 +8,12 @@
     >
       <SvgUploadCloud />
       <div
-        class="mt-5 text-xl leading-6 font-normal text-black-900 dark:text-grey-700"
+        class="mt-5 whitespace-normal break-words text-center text-xl leading-6 font-normal text-black-900 dark:text-grey-700"
       >
         Select a file or drop and drag here
       </div>
       <div
-        class="mt-2 text-xl leading-6 font-light text-black-900 dark:text-grey-700"
+        class="mt-2 whitespace-normal break-words text-center text-xl leading-6 font-light text-black-900 dark:text-grey-700"
       >
         Only accept PDF, file size no more than 5MB
       </div>
@@ -31,13 +31,21 @@
         @change="selectFile"
       />
     </div>
-    <CommonList :items="displayList" @removeItem="removeFile" class="mt-5" />
+    <CommonList
+      :items="displayList"
+      :showUpload="true"
+      @removeItem="removeFile"
+      class="mt-5"
+    />
   </div>
 </template>
 
 <script>
 import Vue from "vue";
 import { v4 as uuidv4 } from "uuid";
+
+// use nuxt axios
+import axios from "axios";
 
 export default Vue.extend({
   data: function () {
@@ -52,6 +60,7 @@ export default Vue.extend({
       return this.uploadItems.map((item) => ({
         id: item.id,
         title: item.file.name,
+        uploadPecentage: item.uploadPercentage,
       }));
     },
   },
@@ -82,11 +91,55 @@ export default Vue.extend({
         file.size <= this.maxSize &&
         !this.checkExistedFile(file)
       ) {
+        const itemId = uuidv4();
+        const cancelSource = axios.CancelToken.source();
+        console.log(111, cancelSource);
         this.uploadItems.push({
-          id: uuidv4(),
+          id: itemId,
           file,
+          fileUrl: "",
+          uploadPercentage: 0,
+          cancelUpload: cancelSource.cancel,
         });
+
+        const formData = new FormData();
+        formData.append("file", file);
+
+        axios
+          .post(
+            "https://curriculumvitae-api.stool.vn/job-detail/upload",
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+              cancelToken: cancelSource.token,
+              onUploadProgress: (progressEvent) => {
+                const uploadPercentage = parseInt(
+                  Math.round((progressEvent.loaded / progressEvent.total) * 100)
+                );
+                this.updateFileUploadPercentage(itemId, uploadPercentage);
+              },
+            }
+          )
+          .then((response) => {
+            this.updateFileUrl(itemId, response.data.fileUrl);
+          })
+          .catch((error) => {
+            console.log(124, error);
+          });
       }
+    },
+    updateFileUrl(id, fileUrl) {
+      this.uploadItems[
+        this.uploadItems.findIndex((item) => item.id === id)
+      ].fileUrl = fileUrl;
+    },
+    updateFileUploadPercentage(id, percentage) {
+      console.log(111, percentage);
+      this.uploadItems[
+        this.uploadItems.findIndex((item) => item.id === id)
+      ].uploadPercentage = percentage;
     },
     checkExistedFile(file) {
       for (let i = 0; i < this.uploadItems.length; i++) {
@@ -99,10 +152,13 @@ export default Vue.extend({
       return false;
     },
     removeFile(id) {
-      this.uploadItems.splice(
-        this.uploadItems.findIndex((item) => item.id === id),
-        1
-      );
+      const itemIndex = this.uploadItems.findIndex((item) => item.id === id);
+      const item = this.uploadItems[itemIndex];
+      if (item.uploadPercentage !== 100) {
+        console.log(111);
+        item.cancelUpload();
+      }
+      this.uploadItems.splice(itemIndex, 1);
     },
   },
 });

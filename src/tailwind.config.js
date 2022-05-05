@@ -10,6 +10,7 @@ module.exports = {
   theme: {
     extend: {
       minWidth: {
+        6: "1.5rem",
         35: "8.75rem",
         42: "10.5rem",
       },
@@ -60,6 +61,9 @@ module.exports = {
         2: "repeat(2, minmax(0, 1fr))",
         3: "repeat(3, minmax(0, 1fr))",
         4: "repeat(4, minmax(0, 1fr))",
+      },
+      transitionProperty: {
+        "stroke-offset": "stroke-dashoffset",
       },
     },
     colors: {
