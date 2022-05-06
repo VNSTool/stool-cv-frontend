@@ -15,7 +15,8 @@
       <div
         class="mt-2 whitespace-normal break-words text-center text-xl leading-6 font-light text-black-900 dark:text-grey-700"
       >
-        Only accept PDF, file size no more than 5MB
+        Only accept {{ acceptTypesText }}. File size no more than
+        {{ maxSize / (1024 * 1024) }}MB
       </div>
       <CommonButtonBase
         label="Select File"
@@ -43,25 +44,54 @@
 <script>
 import Vue from "vue";
 import { v4 as uuidv4 } from "uuid";
+import { TYPE_PDF, TYPE_JPG, TYPE_PNG, TYPE_SVG } from "~/constants/mime-type";
 
 // use nuxt axios
 import axios from "axios";
+
+const FILE_TYPE_MAP = {
+  [TYPE_PDF]: "PDF",
+  [TYPE_JPG]: "jpg, jpeg",
+  [TYPE_PNG]: "png",
+  [TYPE_SVG]: "svg",
+};
 
 export default Vue.extend({
   data: function () {
     return {
       uploadItems: [],
-      acceptTypes: ["application/pdf"],
-      maxSize: 5 * 1024 * 1024,
     };
   },
+  props: {
+    acceptTypes: {
+      type: Array,
+      default: function () {
+        return [];
+      },
+    },
+    maxSize: {
+      type: Number,
+      default: 0,
+    },
+  },
   computed: {
+    acceptTypesText: function () {
+      return this.acceptTypes.map((type) => FILE_TYPE_MAP[type]).join(", ");
+    },
     displayList: function () {
       return this.uploadItems.map((item) => ({
         id: item.id,
         title: item.file.name,
         uploadPecentage: item.uploadPercentage,
       }));
+    },
+  },
+  watch: {
+    uploadItems: {
+      handler(items) {
+        this.$emit("setItems", items);
+      },
+      deep: true,
     },
   },
   methods: {

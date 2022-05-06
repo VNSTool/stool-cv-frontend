@@ -32,13 +32,13 @@
 
 <script>
 import Vue from "vue";
-import AsyncComputed from "vue-async-computed";
-
-import { sleep } from "~/utils/time";
-
-Vue.use(AsyncComputed);
 
 export default Vue.extend({
+  data: function () {
+    return {
+      isUploading: true,
+    };
+  },
   props: {
     item: Object,
     showUpload: Boolean,
@@ -51,15 +51,13 @@ export default Vue.extend({
       };
     },
   },
-  asyncComputed: {
-    isUploading: async function () {
-      if (this.item.uploadPecentage !== 100) {
-        return true;
+  watch: {
+    "item.uploadPecentage": function (val) {
+      if (val === 100) {
+        setTimeout(() => {
+          this.isUploading = false;
+        }, 500);
       }
-
-      await sleep(500);
-
-      return false;
     },
   },
 });

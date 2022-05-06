@@ -1,6 +1,6 @@
 <template>
   <div
-    class="select-none truncate flex rounded-full bg-ghost-200 text-xl leading-6 font-light text-black-900 shadow-md ease-in"
+    class="select-none truncate flex rounded-lg bg-ghost-200 text-xl leading-6 font-light text-black-900 shadow-md ease-in"
     :class="transitionStyle"
   >
     {{ notification.content }}
@@ -32,7 +32,7 @@ export default Vue.extend({
       return {
         [`duration-${NOTIFICATION_TYPE_BASIC_TRANSITION_TIME}`]: true,
         "max-w-0": !this.isShow,
-        "max-w-xs px-4 py-1": this.isShow,
+        "max-w-xs px-5 py-3": this.isShow,
         hidden: this.isRemoved,
       };
     },

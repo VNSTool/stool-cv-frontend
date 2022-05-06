@@ -22,16 +22,7 @@ import { v4 as uuidv4 } from "uuid";
 export default Vue.extend({
   data: function () {
     return {
-      jobDetails: [
-        {
-          id: uuidv4(),
-          url: "https://google.com",
-        },
-        {
-          id: uuidv4(),
-          url: "https://apple.com",
-        },
-      ],
+      jobDetails: [],
     };
   },
   computed: {
