@@ -17,14 +17,20 @@
 <script>
 import Vue from "vue";
 
-import { NOTIFICATION_TYPE_BASIC } from "~/constants/notification";
+import {
+  NOTIFICATION_TYPE_BASIC,
+  NOTIFICATION_TYPE_WARNING,
+} from "~/constants/notification";
 
 export default Vue.extend({
   computed: {
     notifications() {
       let notifications = this.$store.state.notifications.list;
-      notifications = notifications.map((notification) => {
+      return notifications.map((notification) => {
         switch (notification.type) {
+          case NOTIFICATION_TYPE_WARNING:
+            notification.component = "NotificationWarning";
+            break;
           case NOTIFICATION_TYPE_BASIC:
           default:
             notification.component = "NotificationBasic";
@@ -32,7 +38,6 @@ export default Vue.extend({
 
         return notification;
       });
-      return notifications;
     },
   },
 });

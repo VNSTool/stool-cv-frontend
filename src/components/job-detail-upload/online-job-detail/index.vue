@@ -33,6 +33,11 @@ export default Vue.extend({
       }));
     },
   },
+  watch: {
+    jobDetails(val) {
+      this.$emit("setUrls", val);
+    },
+  },
   methods: {
     addItem(url) {
       this.jobDetails.push({
