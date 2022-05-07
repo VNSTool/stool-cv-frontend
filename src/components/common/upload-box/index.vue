@@ -33,6 +33,7 @@
       />
     </div>
     <CommonList
+      v-if="displayList.length !== 0"
       :items="displayList"
       :showUpload="true"
       @removeItem="removeFile"
@@ -191,7 +192,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .dashed-border {
-  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='8' ry='8' stroke='%23737880' stroke-width='2' stroke-dasharray='4%2c 8' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect x='1%25' y='1%25' width='98%25' height='98%25' fill='none' rx='8' ry='8' stroke='%23737880' stroke-width='2' stroke-dasharray='4%2c 8' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
   border-radius: 8px;
 }
 </style>

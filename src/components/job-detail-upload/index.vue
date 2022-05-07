@@ -6,15 +6,19 @@
       :errors="inputEmailErrors"
       :inputClass="'w-full'"
     />
-    <div class="flex flex-col mt-10">
+    <div class="flex flex-col gap-10 lg:flex-row mt-10">
       <CommonUploadBox
         :acceptTypes="fileAcceptTypes"
         :maxSize="fileMaxSize"
         @setItems="setJobDetailFiles"
+        class="flex-1"
       />
+      <div
+        class="hidden lg:flex w-px bg-grey-900 dark:bg-grey-700 h-15 mt-10"
+      ></div>
       <JobDetailUploadOnlineJobDetail
         @setUrls="setJobDetailUrls"
-        class="mt-10"
+        class="flex-1"
       />
     </div>
     <CommonButtonBase
