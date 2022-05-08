@@ -1,5 +1,5 @@
 <template>
-  <div class="group relative flex flex-col">
+  <div class="group relative flex flex-col cursor-pointer">
     <div
       class="z-0 absolute -inset-2 rounded group-hover:bg-ghost-200 dark:group-hover:bg-black"
       :class="backgroundClass"

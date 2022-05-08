@@ -1,6 +1,6 @@
 <template>
   <div
-    class="transition-colors ease-in duration-200 truncate p-6 bg-ghost-100 dark:bg-black-950 sm:rounded-lg"
+    class="transition-colors ease-in duration-200 truncate py-6 px-5 sm:px-6 lg:px-10 bg-ghost-100 dark:bg-black-950 sm:rounded-lg"
   >
     <div
       v-if="title"

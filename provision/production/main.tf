@@ -31,7 +31,7 @@ resource "aws_route_table" "external" {
 
 resource "aws_subnet" "ec2_subnet_a_graphql" {
   vpc_id = local.vpc_id
-  cidr_block = "10.0.0.0/28"
+  cidr_block = local.local.public_cidr_block_a
   availability_zone = "ap-southeast-1a"
   tags = merge(
     local.common_tags,
@@ -48,7 +48,7 @@ resource "aws_route_table_association" "shared_routing_table_with_public_subnet_
 
 resource "aws_subnet" "ec2_subnet_b_graphql" {
   vpc_id = local.vpc_id
-  cidr_block = "10.0.0.16/28"
+  cidr_block = local.public_cidr_block_b
   availability_zone = "ap-southeast-1b"
   tags = merge(
     local.common_tags,
@@ -111,7 +111,6 @@ data "aws_ami" "linux" {
   filter {
     name = "name"
 
-    // to upload stool ami (linux with docker inside)
     values = ["stool-amazon-linux-docker-v0.4"]
   }
 

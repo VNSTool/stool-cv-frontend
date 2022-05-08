@@ -9,6 +9,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      minWidth: {
+        6: "1.5rem",
+        35: "8.75rem",
+        42: "10.5rem",
+      },
       width: {
         7.5: "1.875rem",
         9.5: "2.375rem",
@@ -20,6 +25,7 @@ module.exports = {
       maxWidth: {
         xxxs: "5rem",
         xxs: "10rem",
+        75: "18.75rem",
       },
       height: {
         7.5: "1.875rem",
@@ -29,6 +35,7 @@ module.exports = {
         42: "10.5rem",
       },
       fontSize: {
+        2: "0.5rem",
         "2.5xl": "1.75rem",
       },
       boxShadow: {
@@ -56,6 +63,9 @@ module.exports = {
         3: "repeat(3, minmax(0, 1fr))",
         4: "repeat(4, minmax(0, 1fr))",
       },
+      transitionProperty: {
+        "stroke-offset": "stroke-dashoffset",
+      },
     },
     colors: {
       white: "#ffffff",
@@ -66,12 +76,23 @@ module.exports = {
       "black-900": "#494C51",
       "black-950": "#1D1D1D",
       black: "#000000",
+      "yellow-100": "#fef4cd",
+      "yellow-200": "#FEE797",
       "ghost-100": "#F5F8FF",
       "ghost-200": "#E6EDFF",
       "ghost-300": "#CCDBFF",
       majorelle: "#4A4DE6",
+      transparent: "transparent",
     },
   },
   plugins: [],
-  safelist: ["grid-cols-2", "grid-cols-3", "grid-cols-4"],
+  safelist: [
+    "grid-cols-2",
+    "grid-cols-3",
+    "grid-cols-4",
+    "max-w-xs",
+    "max-w-75",
+    "px-5",
+    "py-3",
+  ],
 };

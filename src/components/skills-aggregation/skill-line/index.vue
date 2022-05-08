@@ -8,6 +8,7 @@
         :title="skill.title"
         :pathD="skill.pathD"
         :selected="selectedSkill === skill.id"
+        :isInSelectedLine="selectedSkillDetail !== undefined"
         @selectSkill="$emit('selectSkill', skill)"
       />
     </div>

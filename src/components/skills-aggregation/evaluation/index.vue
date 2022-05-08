@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-row justify-center">
     <div
-      class="transition-color ease-in duration-200 flex flex-col items-center p-3 rounded-t-lg cursor-pointer hover:bg-ghost-200 hover:dark:bg-black"
+      class="transition-color ease-in duration-200 flex flex-col items-center p-3 rounded-lg cursor-pointer hover:bg-ghost-200 hover:dark:bg-black"
       :class="containerBackgroundClass"
       @click="$emit('selectSkill')"
     >
@@ -40,6 +40,10 @@ export default Vue.extend({
       type: Boolean,
       default: false,
     },
+    isInSelectedLine: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     titleClass: function () {
@@ -49,6 +53,7 @@ export default Vue.extend({
     },
     containerBackgroundClass: function () {
       return {
+        "!rounded-b-none": this.isInSelectedLine,
         "bg-ghost-200 dark:bg-black": this.selected,
       };
     },
