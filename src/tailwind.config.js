@@ -66,6 +66,9 @@ module.exports = {
       transitionProperty: {
         "stroke-offset": "stroke-dashoffset",
       },
+      padding: {
+        "sticky-lg": "calc(16px + (100vw - 62rem) / 2)",
+      },
     },
     colors: {
       white: "#ffffff",
