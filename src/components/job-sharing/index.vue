@@ -16,10 +16,7 @@
       <div
         class="hidden lg:flex w-px bg-grey-900 dark:bg-grey-700 h-15 mt-10"
       ></div>
-      <JobDetailUploadOnlineJobDetail
-        @setUrls="setJobDetailUrls"
-        class="flex-1"
-      />
+      <JobSharingOnlineJobDetail @setUrls="setJobDetailUrls" class="flex-1" />
     </div>
     <CommonButtonBase
       label="Submit"
