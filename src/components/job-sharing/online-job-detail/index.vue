@@ -11,7 +11,7 @@
       @removeItem="removeItem"
       class="mt-4"
     />
-    <JobDetailUploadOnlineJobDetailInput class="mt-3" @addItem="addItem" />
+    <JobSharingOnlineJobDetailInput class="mt-3" @addItem="addItem" />
   </div>
 </template>
 

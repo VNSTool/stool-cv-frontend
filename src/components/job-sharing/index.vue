@@ -10,16 +10,14 @@
       <CommonUploadBox
         :acceptTypes="fileAcceptTypes"
         :maxSize="fileMaxSize"
+        :uploadUri="uploadUri"
         @setItems="setJobDetailFiles"
         class="flex-1"
       />
       <div
         class="hidden lg:flex w-px bg-grey-900 dark:bg-grey-700 h-15 mt-10"
       ></div>
-      <JobDetailUploadOnlineJobDetail
-        @setUrls="setJobDetailUrls"
-        class="flex-1"
-      />
+      <JobSharingOnlineJobDetail @setUrls="setJobDetailUrls" class="flex-1" />
     </div>
     <CommonButtonBase
       label="Submit"
@@ -73,6 +71,8 @@ export default Vue.extend({
       fileAcceptTypes: [TYPE_PDF],
       fileMaxSize: 5 * 1024 * 1024,
       jobDetailUrls: [],
+      uploadUri: "/job/job-detail/upload",
+      submitUri: "/job",
     };
   },
   validations() {
@@ -142,8 +142,28 @@ export default Vue.extend({
     setJobDetailUrls(urls) {
       this.jobDetailUrls = urls;
     },
-    submit() {
+    async submit() {
       if (!this.$v.$invalid) {
+        const jobDetailFiles = this.jobDetailFiles
+          ? this.jobDetailFiles.map((file) => ({
+              fileUrl: file.fileUrl,
+            }))
+          : [];
+
+        const jobDetailUrls = this.jobDetailUrls
+          ? this.jobDetailUrls.map((item) => item.url)
+          : [];
+
+        try {
+          const response = await this.$axios.post(this.submitUri, {
+            email: this.email,
+            jobDetailFiles,
+            jobDetailUrls,
+          });
+          console.log("Submit", response);
+        } catch (error) {
+          console.log(error);
+        }
       } else {
         this.$store.commit("notifications/add", {
           id: uuidv4(),

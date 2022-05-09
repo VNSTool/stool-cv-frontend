@@ -3,20 +3,22 @@
     class="relative select-none truncate flex rounded-lg bg-yellow-100 shadow-md ease-in"
     :class="transitionStyle"
   >
-    <div
-      class="cursor-pointer select-none absolute top-1 right-1 flex flex-row items-center justify-center w-5 h-5 rounded-full bg-black text-grey-700"
-      @click="hide"
-    >
-      <span class="icon-cross text-2"></span>
-    </div>
-    <ul>
-      <li
-        v-for="content in notification.contents"
-        class="list-item list-disc list-inside text-xl leading-6 font-light text-black-900"
+    <div class="min-w-64">
+      <div
+        class="cursor-pointer select-none absolute top-1 right-1 flex flex-row items-center justify-center w-5 h-5 rounded-full bg-black text-grey-700"
+        @click="hide"
       >
-        {{ content }}
-      </li>
-    </ul>
+        <span class="icon-cross text-2"></span>
+      </div>
+      <ul>
+        <li
+          v-for="content in notification.contents"
+          class="list-item list-disc list-inside whitespace-normal break-words text-xl leading-6 font-light text-black-900"
+        >
+          {{ content }}
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
