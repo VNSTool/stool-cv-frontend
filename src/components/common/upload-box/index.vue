@@ -48,9 +48,6 @@ import { v4 as uuidv4 } from "uuid";
 import { TYPE_PDF, TYPE_JPG, TYPE_PNG, TYPE_SVG } from "~/constants/mime-type";
 import { NOTIFICATION_TYPE_ERROR } from "~/constants/notification";
 
-// use nuxt axios
-import axios from "axios";
-
 const FILE_TYPE_MAP = {
   [TYPE_PDF]: "PDF",
   [TYPE_JPG]: "jpg, jpeg",
@@ -128,7 +125,7 @@ export default Vue.extend({
         !this.checkExistedFile(file)
       ) {
         const itemId = uuidv4();
-        const cancelSource = axios.CancelToken.source();
+        const cancelSource = this.$axios.CancelToken.source();
         this.uploadItems.push({
           id: itemId,
           file,
@@ -140,7 +137,7 @@ export default Vue.extend({
         const formData = new FormData();
         formData.append("file", file);
 
-        axios
+        this.$axios
           .post(this.uploadUri, formData, {
             headers: {
               "Content-Type": "multipart/form-data",
@@ -157,9 +154,10 @@ export default Vue.extend({
             this.updateFileUrl(itemId, response.data.fileUrl);
           })
           .catch((error) => {
-            // console.log(111, file);
-            this.uploadError(file.name);
-            this.removeFile(itemId);
+            if (!this.$axios.isCancel(error)) {
+              this.uploadError(file.name);
+              this.removeFile(itemId);
+            }
           });
       }
     },

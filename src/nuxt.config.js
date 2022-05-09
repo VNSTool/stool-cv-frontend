@@ -36,6 +36,7 @@ export default {
     // https://go.nuxtjs.dev/typescript
     "@nuxt/typescript-build",
     "@nuxtjs/tailwindcss",
+    "@nuxtjs/axios",
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -50,6 +51,8 @@ export default {
   },
 
   publicRuntimeConfig: {
-    apiUrl: process.env.API_URL,
+    axios: {
+      baseUrl: process.env.API_URL,
+    },
   },
 };
