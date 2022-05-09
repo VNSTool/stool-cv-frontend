@@ -13,6 +13,7 @@ module.exports = {
         6: "1.5rem",
         35: "8.75rem",
         42: "10.5rem",
+        64: "16rem",
       },
       width: {
         7.5: "1.875rem",
@@ -81,6 +82,7 @@ module.exports = {
       black: "#000000",
       "yellow-100": "#fef4cd",
       "yellow-200": "#FEE797",
+      red: "#a61d24",
       "ghost-100": "#F5F8FF",
       "ghost-200": "#E6EDFF",
       "ghost-300": "#CCDBFF",

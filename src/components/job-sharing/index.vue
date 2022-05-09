@@ -10,6 +10,7 @@
       <CommonUploadBox
         :acceptTypes="fileAcceptTypes"
         :maxSize="fileMaxSize"
+        :uploadUri="`${$config.apiUrl}/job/job-detail/upload1`"
         @setItems="setJobDetailFiles"
         class="flex-1"
       />

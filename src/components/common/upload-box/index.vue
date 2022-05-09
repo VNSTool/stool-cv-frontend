@@ -46,6 +46,7 @@
 import Vue from "vue";
 import { v4 as uuidv4 } from "uuid";
 import { TYPE_PDF, TYPE_JPG, TYPE_PNG, TYPE_SVG } from "~/constants/mime-type";
+import { NOTIFICATION_TYPE_ERROR } from "~/constants/notification";
 
 // use nuxt axios
 import axios from "axios";
@@ -73,6 +74,10 @@ export default Vue.extend({
     maxSize: {
       type: Number,
       default: 0,
+    },
+    uploadUri: {
+      type: String,
+      default: "",
     },
   },
   computed: {
@@ -136,26 +141,26 @@ export default Vue.extend({
         formData.append("file", file);
 
         axios
-          .post(
-            "https://curriculumvitae-api.stool.vn/job-detail/upload",
-            formData,
-            {
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
-              cancelToken: cancelSource.token,
-              onUploadProgress: (progressEvent) => {
-                const uploadPercentage = parseInt(
-                  Math.round((progressEvent.loaded / progressEvent.total) * 100)
-                );
-                this.updateFileUploadPercentage(itemId, uploadPercentage);
-              },
-            }
-          )
+          .post(this.uploadUri, formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+            cancelToken: cancelSource.token,
+            onUploadProgress: (progressEvent) => {
+              const uploadPercentage = parseInt(
+                Math.round((progressEvent.loaded / progressEvent.total) * 100)
+              );
+              this.updateFileUploadPercentage(itemId, uploadPercentage);
+            },
+          })
           .then((response) => {
             this.updateFileUrl(itemId, response.data.fileUrl);
           })
-          .catch((error) => {});
+          .catch((error) => {
+            // console.log(111, file);
+            this.uploadError(file.name);
+            this.removeFile(itemId);
+          });
       }
     },
     updateFileUrl(id, fileUrl) {
@@ -185,6 +190,13 @@ export default Vue.extend({
         item.cancelUpload();
       }
       this.uploadItems.splice(itemIndex, 1);
+    },
+    uploadError(fileName) {
+      this.$store.commit("notifications/add", {
+        id: uuidv4(),
+        type: NOTIFICATION_TYPE_ERROR,
+        content: `Upload error, removing ${fileName}`,
+      });
     },
   },
 });
