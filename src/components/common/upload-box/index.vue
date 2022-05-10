@@ -1,36 +1,50 @@
 <template>
   <div class="flex flex-col">
     <div
-      class="flex flex-col items-center fw-full dashed-border px-2.5 py-4"
-      @drop.prevent="dropFile"
-      @dragenter.prevent
+      class="relative flex flex-col items-center fw-full dashed-border px-2.5 py-4"
+      draggable="true"
+      @dragenter.prevent="onDragEnter"
+      @dragleave.prevent="onDragLeave"
       @dragover.prevent
+      @drop.prevent="dropFile"
     >
-      <SvgUploadCloud />
       <div
-        class="mt-5 whitespace-normal break-words text-center text-xl leading-6 font-normal text-black-900 dark:text-grey-700"
+        v-show="dragTarget"
+        class="absolute inset-0 flex flex-row px-2.5 py-4"
       >
-        Select a file or drop and drag here
+        <div
+          class="w-full flex items-center justify-center bg-ghost-100 dark:bg-black-950 text-xl leading-6 font-normal text-black-900 dark:text-grey-700"
+        >
+          Drag it here
+        </div>
       </div>
-      <div
-        class="mt-2 whitespace-normal break-words text-center text-xl leading-6 font-light text-black-900 dark:text-grey-700"
-      >
-        Only accept {{ acceptTypesText }}. File size no more than
-        {{ maxSize / (1024 * 1024) }}MB
+      <div class="flex flex-col items-center">
+        <SvgUploadCloud />
+        <div
+          class="mt-5 whitespace-normal break-words text-center text-xl leading-6 font-normal text-black-900 dark:text-grey-700"
+        >
+          Select a file or drop and drag here
+        </div>
+        <div
+          class="mt-2 whitespace-normal break-words text-center text-xl leading-6 font-light text-black-900 dark:text-grey-700"
+        >
+          Only accept {{ acceptTypesText }}. File size no more than
+          {{ maxSize / (1024 * 1024) }}MB
+        </div>
+        <CommonButtonBase
+          label="Select File"
+          class="mt-5"
+          @click.native="$refs.fileInput.click()"
+        />
+        <input
+          ref="fileInput"
+          type="file"
+          multiple
+          v-show="false"
+          :accept="acceptTypes.join(',')"
+          @change="selectFile"
+        />
       </div>
-      <CommonButtonBase
-        label="Select File"
-        class="mt-5"
-        @click.native="$refs.fileInput.click()"
-      />
-      <input
-        ref="fileInput"
-        type="file"
-        multiple
-        v-show="false"
-        :accept="acceptTypes.join(',')"
-        @change="selectFile"
-      />
     </div>
     <CommonList
       v-if="displayList.length !== 0"
@@ -46,7 +60,10 @@
 import Vue from "vue";
 import { v4 as uuidv4 } from "uuid";
 import { TYPE_PDF, TYPE_JPG, TYPE_PNG, TYPE_SVG } from "~/constants/mime-type";
-import { NOTIFICATION_TYPE_ERROR } from "~/constants/notification";
+import {
+  NOTIFICATION_TYPE_WARNING,
+  NOTIFICATION_TYPE_ERROR,
+} from "~/constants/notification";
 
 const FILE_TYPE_MAP = {
   [TYPE_PDF]: "PDF",
@@ -59,6 +76,7 @@ export default Vue.extend({
   data: function () {
     return {
       uploadItems: [],
+      dragTarget: null,
     };
   },
   props: {
@@ -73,6 +91,10 @@ export default Vue.extend({
       default: 0,
     },
     uploadUri: {
+      type: String,
+      default: "",
+    },
+    deleteUri: {
       type: String,
       default: "",
     },
@@ -98,7 +120,16 @@ export default Vue.extend({
     },
   },
   methods: {
+    onDragEnter(ev) {
+      this.dragTarget = ev ? ev.target : null;
+    },
+    onDragLeave(ev) {
+      if (ev && ev.target === this.dragTarget) {
+        this.dragTarget = null;
+      }
+    },
     dropFile(ev) {
+      this.dragTarget = null;
       if (ev.dataTransfer.items) {
         for (let i = 0; i < ev.dataTransfer.items.length; i++) {
           if (ev.dataTransfer.items[i].kind === "file") {
@@ -118,12 +149,29 @@ export default Vue.extend({
 
       ev.target.value = "";
     },
+    validateFile(file) {
+      const errors = [];
+
+      if (!this.acceptTypes.includes(file.type)) {
+        errors.push("File type is not accepted");
+      }
+
+      if (file.size > this.maxSize) {
+        errors.push("File is bigger than accepted");
+      }
+
+      if (this.checkExistedFile(file)) {
+        errors.push("File is already selected");
+      }
+
+      return errors;
+    },
     insertFile(file) {
-      if (
-        this.acceptTypes.includes(file.type) &&
-        file.size <= this.maxSize &&
-        !this.checkExistedFile(file)
-      ) {
+      const errors = this.validateFile(file);
+
+      if (errors.length !== 0) {
+        this.selectFileError(file.name, errors);
+      } else {
         const itemId = uuidv4();
         const cancelSource = this.$axios.CancelToken.source();
         this.uploadItems.push({
@@ -131,6 +179,7 @@ export default Vue.extend({
           file,
           fileUrl: "",
           uploadPercentage: 0,
+          uploadFinish: false,
           cancelUpload: cancelSource.cancel,
         });
 
@@ -184,8 +233,14 @@ export default Vue.extend({
     removeFile(id) {
       const itemIndex = this.uploadItems.findIndex((item) => item.id === id);
       const item = this.uploadItems[itemIndex];
-      if (item.uploadPercentage !== 100) {
+      if (!item.fileUrl) {
         item.cancelUpload();
+      } else {
+        this.$axios.delete(this.deleteUri, {
+          params: {
+            fileUrl: decodeURI(item.fileUrl),
+          },
+        });
       }
       this.uploadItems.splice(itemIndex, 1);
     },
@@ -195,6 +250,17 @@ export default Vue.extend({
         type: NOTIFICATION_TYPE_ERROR,
         content: `Upload error, removing ${fileName}`,
       });
+    },
+    selectFileError(fileName, errors) {
+      this.$store.commit("notifications/add", {
+        id: uuidv4(),
+        type: NOTIFICATION_TYPE_WARNING,
+        title: `${fileName} not accepted`,
+        contents: errors,
+      });
+    },
+    reset() {
+      this.uploadItems = [];
     },
   },
 });

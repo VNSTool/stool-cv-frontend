@@ -52,6 +52,9 @@ export default Vue.extend({
         this.url = "";
       }
     },
+    reset() {
+      this.url = null;
+    },
   },
 });
 </script>

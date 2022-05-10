@@ -1,35 +1,54 @@
 <template>
-  <CommonInformationBox :title="title" class="relative flex flex-col">
-    <CommonInputBase
-      v-model="email"
-      placeholder="Input your email"
-      :errors="inputEmailErrors"
-      :inputClass="'w-full'"
-    />
-    <div class="flex flex-col gap-10 lg:flex-row mt-10">
-      <CommonUploadBox
-        :acceptTypes="fileAcceptTypes"
-        :maxSize="fileMaxSize"
-        :uploadUri="uploadUri"
-        @setItems="setJobDetailFiles"
-        class="flex-1"
+  <CommonInformationBox :title="displayTitle" class="relative flex flex-col">
+    <div
+      v-if="submitSuccessfully"
+      class="flex flex-col items-center justify-center bg-ghost-100 dark:bg-black-950 whitespace-normal break-words text-center text-xl leading-6 font-light text-black-900 dark:text-grey-700"
+    >
+      <div>Confirmation email will be sent to you soon</div>
+      <CommonButtonBase
+        label="OK"
+        @click.native="closeNotifyBox"
+        class="mt-4 bg-majorelle !text-grey-700"
       />
-      <div
-        class="hidden lg:flex w-px bg-grey-900 dark:bg-grey-700 h-15 mt-10"
-      ></div>
-      <JobSharingOnlineJobDetail @setUrls="setJobDetailUrls" class="flex-1" />
     </div>
-    <CommonButtonBase
-      label="Submit"
-      class="hidden sm:block absolute top-6 right-6 bg-majorelle !text-grey-700"
-      @click.native="submit"
-    />
-    <div class="flex flex-row justify-end">
+    <div v-show="!submitSuccessfully">
+      <CommonInputBase
+        v-model="email"
+        placeholder="Input your email"
+        :errors="inputEmailErrors"
+        inputClass="w-full max-w-md"
+      />
+      <div class="flex flex-col gap-10 lg:flex-row mt-10">
+        <CommonUploadBox
+          :acceptTypes="fileAcceptTypes"
+          :maxSize="fileMaxSize"
+          :uploadUri="uploadUri"
+          :deleteUri="deleteUri"
+          @setItems="setJobDetailFiles"
+          ref="uploadBox"
+          class="flex-1"
+        />
+        <div
+          class="hidden lg:flex w-px bg-grey-900 dark:bg-grey-700 h-15 mt-10"
+        ></div>
+        <JobSharingOnlineJobDetail
+          ref="onlineJob"
+          @setUrls="setJobDetailUrls"
+          class="flex-1"
+        />
+      </div>
       <CommonButtonBase
         label="Submit"
-        class="flex sm:hidden mt-10 bg-majorelle !text-grey-700"
+        class="hidden sm:block absolute top-6 right-6 bg-majorelle !text-grey-700"
         @click.native="submit"
       />
+      <div class="flex flex-row justify-end">
+        <CommonButtonBase
+          label="Submit"
+          class="flex sm:hidden mt-10 bg-majorelle !text-grey-700"
+          @click.native="submit"
+        />
+      </div>
     </div>
   </CommonInformationBox>
 </template>
@@ -72,7 +91,9 @@ export default Vue.extend({
       fileMaxSize: 5 * 1024 * 1024,
       jobDetailUrls: [],
       uploadUri: "/job/job-detail/upload",
+      deleteUri: "/job/job-detail",
       submitUri: "/job",
+      submitSuccessfully: false,
     };
   },
   validations() {
@@ -96,6 +117,11 @@ export default Vue.extend({
     };
   },
   computed: {
+    displayTitle: function () {
+      if (this.submitSuccessfully) return "";
+
+      return this.title;
+    },
     emailErrors: function () {
       const errors = [];
 
@@ -160,8 +186,9 @@ export default Vue.extend({
             jobDetailFiles,
             jobDetailUrls,
           });
-          console.log("Submit", response);
+          this.submitSuccessfully = true;
         } catch (error) {
+          // TODO
           console.log(error);
         }
       } else {
@@ -171,6 +198,17 @@ export default Vue.extend({
           contents: this.submitErrors,
         });
       }
+    },
+    closeNotifyBox() {
+      this.submitSuccessfully = false;
+      this.resetFormData();
+    },
+    resetFormData() {
+      this.email = null;
+      this.jobDetailFiles = null;
+      this.jobDetailUrls = [];
+      this.$refs.uploadBox.reset();
+      this.$refs.onlineJob.reset();
     },
   },
 });

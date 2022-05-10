@@ -10,6 +10,12 @@
       >
         <span class="icon-cross text-2"></span>
       </div>
+      <div
+        v-if="notification.title"
+        class="mb-1 whitespace-normal break-all text-xl leading-6 font-normal text-black-900"
+      >
+        {{ notification.title }}
+      </div>
       <ul>
         <li
           v-for="content in notification.contents"

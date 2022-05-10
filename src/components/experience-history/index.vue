@@ -186,7 +186,7 @@ export default Vue.extend({
                     {
                       id: uuidv4(),
                       title: '<span class="font-medium">Frontend</span>',
-                      descriptions: ["Google AMP"],
+                      descriptions: ["Google AMP", "Google Analytics"],
                     },
                     {
                       id: uuidv4(),
