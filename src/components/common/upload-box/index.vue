@@ -236,9 +236,11 @@ export default Vue.extend({
       if (!item.fileUrl) {
         item.cancelUpload();
       } else {
-        this.$axios.delete(
-          `${this.deleteUri}/${encodeURIComponent(item.fileUrl)}`
-        );
+        this.$axios.delete(this.deleteUri, {
+          params: {
+            fileUrl: decodeURI(item.fileUrl),
+          },
+        });
       }
       this.uploadItems.splice(itemIndex, 1);
     },
