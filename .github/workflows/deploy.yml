@@ -1,4 +1,4 @@
-name: Production - Deploy 
+name: Production - Deploy
 
 on:
   workflow_dispatch:
@@ -30,7 +30,11 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Copy env config
-        run: cp ./src/.env.production ./src/.env
+        env:
+          VERSION: ${{ github.ref_name }}
+        run: |
+          cp ./src/.env.production ./src/.env
+          echo VERSION=$VERSION > ./src/.env
 
       - name: Login to Amazon ECR
         id: login-ecr

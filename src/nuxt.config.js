@@ -51,6 +51,7 @@ export default {
   },
 
   publicRuntimeConfig: {
+    version: process.env.VERSION,
     axios: {
       baseUrl: process.env.API_URL,
     },
