@@ -46,7 +46,6 @@ export default Vue.extend({
   },
   methods: {
     addUrl() {
-      console.log(111);
       if (!this.$v.$invalid) {
         this.$emit("addItem", this.url);
         this.url = "";

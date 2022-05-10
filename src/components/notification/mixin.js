@@ -43,6 +43,5 @@ export default {
       notificationConfig[`${this.notification.type}_DISPLAY_TIME`];
     this.delayTime = notificationConfig[`${this.notification.type}_DELAY_TIME`];
     setTimeout(this.show, this.delayTime);
-    console.log(111, this.notification);
   },
 };

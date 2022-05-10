@@ -65,7 +65,10 @@ import {
 import { v4 as uuidv4 } from "uuid";
 
 import { TYPE_PDF, TYPE_JPG, TYPE_PNG, TYPE_SVG } from "~/constants/mime-type";
-import { NOTIFICATION_TYPE_WARNING } from "~/constants/notification";
+import {
+  NOTIFICATION_TYPE_WARNING,
+  NOTIFICATION_TYPE_ERROR,
+} from "~/constants/notification";
 
 Vue.use(Vuelidate);
 
@@ -188,8 +191,11 @@ export default Vue.extend({
           });
           this.submitSuccessfully = true;
         } catch (error) {
-          // TODO
-          console.log(error);
+          this.$store.commit("notifications/add", {
+            id: uuidv4(),
+            type: NOTIFICATION_TYPE_ERROR,
+            content: "Server issue, try later",
+          });
         }
       } else {
         this.$store.commit("notifications/add", {
