@@ -11,6 +11,7 @@
         :acceptTypes="fileAcceptTypes"
         :maxSize="fileMaxSize"
         :uploadUri="uploadUri"
+        :deleteUri="deleteUri"
         @setItems="setJobDetailFiles"
         class="flex-1"
       />
@@ -72,6 +73,7 @@ export default Vue.extend({
       fileMaxSize: 5 * 1024 * 1024,
       jobDetailUrls: [],
       uploadUri: "/job/job-detail/upload",
+      deleteUri: "/job/job-detail",
       submitUri: "/job",
     };
   },
