@@ -110,9 +110,9 @@ export default Vue.extend({
                       title:
                         '<span class="font-medium">Main Responsibilities</span>',
                       descriptions: [
-                        "Working as intepreter in meeting bewteen Integro and Sacombank, to explain to Sacombank about technology",
-                        "Migrate the current database of Sacombankto Integro's system",
-                        "Coordinate between Integro's techlead and FPT's developers",
+                        "Working as interpreter in meeting bewteen Integro and Sacombank, to explain to Sacombank about technology aspect",
+                        "Migrate the current database of Sacombank to Integro's system",
+                        "Coordinate between Integro's tech-lead and FPT's developers",
                       ],
                     },
                   ],
@@ -155,7 +155,7 @@ export default Vue.extend({
                     {
                       id: uuidv4(),
                       title: '<span class="font-medium">Frontend</span>',
-                      descriptions: ["ReactJS", "AngularJS"],
+                      descriptions: ["ReactJS, AngularJS"],
                     },
                     {
                       id: uuidv4(),
@@ -170,7 +170,7 @@ export default Vue.extend({
                   title:
                     '<span class="font-medium">Outsource</span> for <a target="_blank" href="https://ipricegroup.com/">iPrice</a>',
                   descriptions: [
-                    "Price comparision website for online products",
+                    "iPrice is price comparision website for online products",
                     "It's running business on Southeast Asia and Hongkong",
                   ],
                   details: [
@@ -203,7 +203,7 @@ export default Vue.extend({
                         "EC2, AutoScaling, ELB, VPC",
                         "S3, RDS, ElastiCache, Athena, SQS",
                         "API Gateway, AppSync, Lambda Function",
-                        "R53, ECR, Cloudwatch, CloudFormation",
+                        "R53, CloudFront, ECR, Cloudwatch, CloudFormation",
                       ],
                     },
                     {
@@ -214,9 +214,7 @@ export default Vue.extend({
                     {
                       id: uuidv4(),
                       title: '<span class="font-medium">Others</span>',
-                      descriptions: [
-                        "Nginx, Airflow, OctoberCMS, Figma, Zeplin, Airflow",
-                      ],
+                      descriptions: ["Nginx, Airflow, Figma, Zeplin"],
                     },
                     {
                       id: uuidv4(),
@@ -240,8 +238,7 @@ export default Vue.extend({
                         "Develop GraphQL as a datapoint for usage of iPrice and Shopback. Benchmark and optimize" +
                           " it to meet SRT SLA",
                         "Manage meetings, e.g. technical grooming, backlog grooming, sprint planing",
-                        "One of main coordinators between PO, PM, developers, QA, UXUI and partners",
-                        "Create and manage tickets on Jira",
+                        "Participate in creating and managing tickets on Jira",
                         "Create technical documents on Confluence",
                       ],
                     },
