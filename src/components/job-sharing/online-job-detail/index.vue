@@ -11,7 +11,11 @@
       @removeItem="removeItem"
       class="mt-4"
     />
-    <JobSharingOnlineJobDetailInput class="mt-3" @addItem="addItem" />
+    <JobSharingOnlineJobDetailInput
+      ref="input"
+      class="mt-3"
+      @addItem="addItem"
+    />
   </div>
 </template>
 
@@ -50,6 +54,10 @@ export default Vue.extend({
         this.jobDetails.findIndex((jobDetail) => jobDetail.id === id),
         1
       );
+    },
+    reset() {
+      this.$refs.input.reset();
+      this.jobDetails = [];
     },
   },
 });

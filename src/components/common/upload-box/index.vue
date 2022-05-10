@@ -259,6 +259,9 @@ export default Vue.extend({
         contents: errors,
       });
     },
+    reset() {
+      this.uploadItems = [];
+    },
   },
 });
 </script>

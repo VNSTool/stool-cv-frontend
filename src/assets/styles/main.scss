@@ -7,5 +7,7 @@ html {
 
 a {
   text-decoration: underline 1px;
+  -webkit-text-decoration: underline 1px;
   text-underline-offset: 1px;
+  -webkit-text-underline-offset: 1px;
 }
