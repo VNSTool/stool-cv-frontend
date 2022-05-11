@@ -34,7 +34,7 @@ jobs:
           VERSION: ${{ github.ref_name }}
         run: |
           cp ./src/.env.production ./src/.env
-          echo VERSION=$VERSION > ./src/.env
+          echo VERSION=$VERSION >> ./src/.env
 
       - name: Login to Amazon ECR
         id: login-ecr

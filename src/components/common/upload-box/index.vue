@@ -15,7 +15,7 @@
         <div
           class="w-full flex items-center justify-center bg-ghost-100 dark:bg-black-950 text-xl leading-6 font-normal text-black-900 dark:text-grey-700"
         >
-          Drag it here
+          Drop it here
         </div>
       </div>
       <div class="flex flex-col items-center">
