@@ -200,10 +200,10 @@ export default Vue.extend({
                       id: uuidv4(),
                       title: '<span class="font-medium">AWS services</span>',
                       descriptions: [
-                        "EC2, AutoScaling, ELB, VPC",
+                        "EC2, AutoScaling, ELB, CloudFormation, VPC",
                         "S3, RDS, ElastiCache, Athena, SQS",
                         "API Gateway, AppSync, Lambda Function",
-                        "R53, CloudFront, ECR, Cloudwatch, CloudFormation",
+                        "R53, CloudFront, ECR, Cloudwatch, SES",
                       ],
                     },
                     {
@@ -251,7 +251,7 @@ export default Vue.extend({
               childEvents: [
                 {
                   id: uuidv4(),
-                  time: "Apr 2019",
+                  time: "Apr 2022",
                   title:
                     '<span class="font-medium">Resign</span> from NFQ Vietnam',
                 },

@@ -2,7 +2,6 @@
   <div class="flex flex-col">
     <div
       class="relative flex flex-col items-center fw-full dashed-border px-2.5 py-4"
-      draggable="true"
       @dragenter.prevent="onDragEnter"
       @dragleave.prevent="onDragLeave"
       @dragover.prevent
