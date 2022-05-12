@@ -9,10 +9,9 @@
     @mousedown="mouseDown"
     @mouseup="mouseUp"
   >
-    <div
-      class="w-9.5 h-9.5 rounded-full bg-no-repeat bg-cover"
-      :style="backgroundStyle"
-    ></div>
+    <div class="w-9.5 h-9.5 rounded-full bg-no-repeat bg-cover">
+      <NuxtPicture :src="social.image" loading="lazy" />
+    </div>
     <div
       class="max-w-0 truncate text-xl leading-6 font-light text-black-900 dark:text-grey-700 ease-in duration-500"
       :class="{
@@ -62,13 +61,6 @@ export default Vue.extend({
       if (this.selected) {
         this.copied = false;
       }
-    },
-  },
-  computed: {
-    backgroundStyle: function () {
-      return {
-        backgroundImage: `url('${this.social.image}')`,
-      };
     },
   },
 });

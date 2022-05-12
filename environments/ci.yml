@@ -15,6 +15,13 @@ services:
       - ../src:/stool/cv
     entrypoint: ["yarn", "add", "${PACKAGE}"]
 
+  yarn-add-dev:
+    image: 132344050580.dkr.ecr.ap-southeast-1.amazonaws.com/nodejs/alpine:v0.0.2
+    working_dir: /stool/cv
+    volumes:
+      - ../src:/stool/cv
+    entrypoint: ["yarn", "add", "--dev", "${PACKAGE}"]
+
   yarn-remove:
     image: 132344050580.dkr.ecr.ap-southeast-1.amazonaws.com/nodejs/alpine:v0.0.2
     working_dir: /stool/cv
