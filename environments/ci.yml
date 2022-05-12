@@ -35,3 +35,12 @@ services:
     volumes:
       - ../src:/stool/cv
     entrypoint: ["yarn", "build"]
+
+  start:
+    image: 132344050580.dkr.ecr.ap-southeast-1.amazonaws.com/nodejs/alpine:v0.0.2
+    working_dir: /stool/cv
+    volumes:
+      - ../src:/stool/cv
+    ports:
+      - "3000:3000"
+    entrypoint: ["yarn", "start"]
