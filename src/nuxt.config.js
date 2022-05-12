@@ -37,6 +37,7 @@ export default {
     "@nuxt/typescript-build",
     "@nuxtjs/tailwindcss",
     "@nuxtjs/axios",
+    "@nuxt/image",
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
