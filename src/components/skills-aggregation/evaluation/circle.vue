@@ -38,27 +38,10 @@ export default Vue.extend({
       type: String,
       default: "",
     },
-    selected: {
-      type: Boolean,
-      default: false,
-    },
   },
   computed: {
     fillColor: function () {
-      if (this.selected) {
-        return "#4A4DE6";
-      }
-
-      const displayMode = this.$store.state.displayMode;
-
-      switch (displayMode) {
-        case DISPLAY_MODE_DARK:
-          return "#1D1D1D";
-
-        case DISPLAY_MODE_LIGHT:
-        default:
-          return "#F5F8FF";
-      }
+      return "#4A4DE6";
     },
   },
 });

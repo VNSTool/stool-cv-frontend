@@ -25,5 +25,10 @@ export default Vue.extend({
   props: {
     detail: Object,
   },
+  watch: {
+    detail(newVal) {
+      console.log(newVal);
+    },
+  },
 });
 </script>
