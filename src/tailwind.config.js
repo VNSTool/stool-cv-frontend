@@ -18,6 +18,7 @@ module.exports = {
       width: {
         7.5: "1.875rem",
         9.5: "2.375rem",
+        10.5: "2.625rem",
         35: "8.75rem",
         42: "10.5rem",
         120: "30rem",
@@ -31,6 +32,7 @@ module.exports = {
       height: {
         7.5: "1.875rem",
         9.5: "2.375rem",
+        10.5: "2.625rem",
         15: "3.75rem",
         35: "8.75rem",
         42: "10.5rem",
@@ -42,6 +44,7 @@ module.exports = {
       boxShadow: {
         "2xl-dark": "0px 0px 30px -5px rgba(255, 255, 255, 0.25)",
         "3xl": "0px 8px 40px -10px rgba(0, 0, 0, 0.25)",
+        "3.5xl": "0px 8px 40px -10px rgba(0, 0, 0, 0.4)",
       },
       spacing: {
         12.5: "3.125rem",
