@@ -3,6 +3,7 @@ export function downloadFile(fileUrl) {
   const link = document.createElement("a");
   link.style.display = "none";
   link.target = "_blank";
+  link.download = "";
   link.href = fileUrl;
 
   // It needs to be added to the DOM so it can be clicked
