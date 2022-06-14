@@ -21,7 +21,7 @@ export default Vue.extend({
   methods: {
     downloadHardCopyCV() {
       downloadFile(
-        "https://static.stool.vn/curriculum-vitae/nmtri_cv_120522-compressed.pdf"
+        "https://static.stool.vn/curriculum-vitae/nmtri_cv_140622-compressed.pdf"
       );
     },
   },

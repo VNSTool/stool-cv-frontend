@@ -64,7 +64,7 @@ describe("StickyTopDisplayModeToggleItem", () => {
     expect(innerDiv.classes()).toContain(ICON_SUN);
   });
 
-  test("mousedown and mouse down event trigger select mode and update the style", async () => {
+  test("mouse down and mouse up event trigger select mode and update the style", async () => {
     const wrapper = mount(StickyTopDisplayModeToggleItem, {
       propsData: {
         mode: DISPLAY_MODE_LIGHT,
@@ -73,10 +73,10 @@ describe("StickyTopDisplayModeToggleItem", () => {
     });
 
     await wrapper.trigger("mousedown");
-    expect(wrapper.emitted().selectMode[0]).toEqual([]);
     expect(wrapper.classes()).toEqual(expect.arrayContaining(mouseDownClasses));
 
     await wrapper.trigger("mouseup");
+    expect(wrapper.emitted().selectMode[0]).toEqual([]);
     expect(wrapper.classes()).not.toEqual(
       expect.arrayContaining(mouseDownClasses)
     );

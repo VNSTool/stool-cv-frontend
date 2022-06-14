@@ -39,7 +39,7 @@ export default Vue.extend({
             },
             {
               title: "To Improve",
-              list: ["Do e2e test"],
+              list: ["Learn about micro service and Kafka"],
             },
           ],
         },
@@ -65,6 +65,7 @@ export default Vue.extend({
                 "Have more production experience working with ReactJS and VueJS",
                 "Work with complex components like animation, map, graph, etc.",
                 "Implement snapshot test and e2e test",
+                "Learn about micro frontend",
               ],
             },
           ],
@@ -78,7 +79,7 @@ export default Vue.extend({
             {
               title: "Having",
               list: [
-                "Work design patterns like Singleton, Factory, Decorator",
+                "Work design patterns like Singleton, Abstract Factory, Decorator",
                 "Understand design principles DRY, SOLID",
                 "Work with generic algorithm and understand sorting algorithms",
               ],
@@ -101,7 +102,7 @@ export default Vue.extend({
             {
               title: "Having",
               list: [
-                "Work with SQL database e.g. MySQL, MariaDB, parquet columnar database, etc.",
+                "Work with SQL database e.g. MySQL, MariaDB, etc.",
                 "Work with NoSQL database e.g. Elasticsearch, MongoDB, Redis, etc.",
                 "Understand the benefit and side effect of indexing",
                 "Optimize heavy query",
@@ -110,7 +111,7 @@ export default Vue.extend({
             },
             {
               title: "To Improve",
-              list: ["Design database for big and complex system"],
+              list: ["Learn database structure of big and complex system"],
             },
           ],
         },
@@ -125,7 +126,7 @@ export default Vue.extend({
               list: [
                 "Work with Docker",
                 "Work with Terraform to deploy application on AWS",
-                "Customize pipelines on CI/CD tools e.g. Teamcity, Github Actions",
+                "Can build pipelines on CI/CD tools e.g. Teamcity, Github Actions",
                 "Monitor application through NewRelics",
               ],
             },
@@ -145,7 +146,6 @@ export default Vue.extend({
               title: "Having",
               list: [
                 "Work on many fundamental services on AWS",
-                "Can understand AWS documents quickly",
                 "Can do R&D on AWS by myself",
               ],
             },
@@ -167,15 +167,13 @@ export default Vue.extend({
             {
               title: "Having",
               list: [
-                "Communicate with English speaker fluently, in work topics or casual topics",
-                "Know how to explain a thing in English using simple words, help listener to understand easily",
-                "Make a document or email in formal form",
+                "Can communicate in English fluently, in work topics or casual topics, verbal or written",
               ],
             },
             {
               title: "To Improve",
               list: [
-                "Enhance complexity vocabulary and able to use them in some circumstances",
+                "Expand vocabulary",
               ],
             },
           ],

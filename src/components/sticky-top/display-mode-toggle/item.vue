@@ -4,6 +4,7 @@
     :class="backgroundClass"
     @mousedown="mouseDown"
     @mouseup="mouseUp"
+    @mouseleave="mouseLeave"
   >
     <div class="text-black-900 dark:text-grey-700" :class="iconClass"></div>
   </div>
@@ -48,10 +49,13 @@ export default Vue.extend({
   },
   methods: {
     mouseDown() {
-      this.$emit("selectMode");
       this.onMouseDown = true;
     },
     mouseUp() {
+      this.$emit("selectMode");
+      this.onMouseDown = false;
+    },
+    mouseLeave() {
       this.onMouseDown = false;
     },
   },

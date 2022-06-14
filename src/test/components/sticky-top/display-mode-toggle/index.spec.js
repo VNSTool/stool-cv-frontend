@@ -75,7 +75,7 @@ describe("StickyTopDisplayModeToggle", () => {
     const displayModes = wrapper.findAllComponents(
       StickyTopDisplayModeToggleItem
     );
-    await displayModes.at(1).trigger("mousedown");
+    await displayModes.at(1).trigger("mouseup");
     expect(mutations.changeDisplayMode).toHaveBeenCalled();
   });
 });
