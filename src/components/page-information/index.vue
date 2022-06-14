@@ -31,7 +31,7 @@ export default Vue.extend({
         },
         {
           title: "AWS",
-          description: "S3, SQS, SES, CloudFront",
+          description: "EC2, S3, SQS, SES, CloudFront",
         },
         {
           title: "CI/CD",
