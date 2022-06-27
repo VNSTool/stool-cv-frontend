@@ -48,12 +48,20 @@ export default Vue.extend({
         id: uuidv4(),
         url,
       });
+
+      this.$gtm.push({
+        event: "add_job_detail_url",
+      });
     },
     removeItem(id) {
       this.jobDetails.splice(
         this.jobDetails.findIndex((jobDetail) => jobDetail.id === id),
         1
       );
+
+      this.$gtm.push({
+        event: "remove_job_detail_url",
+      });
     },
     reset() {
       this.$refs.input.reset();

@@ -143,18 +143,14 @@ export default Vue.extend({
                   time: "Jun 2019",
                   title:
                     '<span class="font-medium">Start working</span> at <a target="_blank" href="https://www.nfq-asia.com/en">NFQ Vietnam</a>',
-                  descriptions: [
-                    "NFQ is outsourcing company",
-                  ],
+                  descriptions: ["NFQ is outsourcing company"],
                 },
                 {
                   id: uuidv4(),
                   time: "Jun 2019",
                   title:
                     '<span class="font-medium">Work in internal project</span>: Human Resource Management System',
-                  descriptions: [
-                    "This system is used by internal departments",
-                  ],
+                  descriptions: ["This system is used by internal departments"],
                   details: [
                     {
                       id: uuidv4(),

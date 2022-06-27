@@ -20,6 +20,10 @@ import { downloadFile } from "~/utils/file";
 export default Vue.extend({
   methods: {
     downloadHardCopyCV() {
+      this.$gtm.push({
+        event: "download_cv",
+      });
+
       downloadFile(
         "https://static.stool.vn/curriculum-vitae/nmtri_cv_140622-compressed.pdf"
       );

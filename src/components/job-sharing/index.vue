@@ -25,6 +25,7 @@
           :uploadUri="uploadUri"
           :deleteUri="deleteUri"
           @setItems="setJobDetailFiles"
+          @onRemoveItem="removeJobDetailFile"
           ref="uploadBox"
           class="flex-1"
         />
@@ -167,6 +168,15 @@ export default Vue.extend({
   methods: {
     setJobDetailFiles(files) {
       this.jobDetailFiles = files;
+
+      this.$gtm.push({
+        event: "add_job_detail_file",
+      });
+    },
+    removeJobDetailFile() {
+      this.$gtm.push({
+        event: "remove_job_detail_file",
+      });
     },
     setJobDetailUrls(urls) {
       this.jobDetailUrls = urls;
@@ -190,6 +200,10 @@ export default Vue.extend({
             jobDetailUrls,
           });
           this.submitSuccessfully = true;
+
+          this.$gtm.push({
+            event: "submit_job_detail",
+          });
         } catch (error) {
           this.$store.commit("notifications/add", {
             id: uuidv4(),
