@@ -21,16 +21,15 @@ export default {
             "This page is Tri's curriculum vitae. You can find my experiences and skills here, also hire me by share me jod details.",
         },
       ],
-      script: [
-        {
-          src: "https://www.googletagmanager.com/gtag/js?id=G-CMVXBBK798",
-          async: true,
-        },
-        {
-          src: "/js/gtag-setting.js",
-        },
-      ],
     };
+  },
+  mounted() {
+    // this.$ga.page(this.$router);
+    this.$ga.page({
+      page: "/",
+      title: "Home page",
+      location: window.location.href,
+    });
   },
 };
 </script>
