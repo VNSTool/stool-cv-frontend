@@ -23,13 +23,5 @@ export default {
       ],
     };
   },
-  mounted() {
-    // this.$ga.page(this.$router);
-    this.$ga.page({
-      page: "/",
-      title: "Home page",
-      location: window.location.href,
-    });
-  },
 };
 </script>

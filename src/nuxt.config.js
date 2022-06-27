@@ -35,11 +35,10 @@ export default {
     "@nuxt/typescript-build",
     "@nuxtjs/tailwindcss",
     "@nuxtjs/axios",
-    "@nuxtjs/google-analytics",
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ["@nuxt/image"],
+  modules: ["@nuxt/image", "@nuxtjs/gtm"],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
@@ -49,19 +48,15 @@ export default {
     port: "3000",
   },
 
-  googleAnalytics: {
-    id: process.env.CURRICULUM_VITAE_ID, // Use as fallback if no runtime config is provided
-    checkDuplicatedScript: true,
-  },
-
   publicRuntimeConfig: {
     version: process.env.VERSION,
     axios: {
       baseUrl: process.env.API_URL,
     },
-    googleAnalytics: {
-      id: process.env.CURRICULUM_VITAE_ID,
-      checkDuplicatedScript: true,
+    gtm: {
+      id: process.env.CURRICULUM_VITAE_GTM_ID,
+      enabled: true,
+      pageTracking: true,
     },
   },
 };
