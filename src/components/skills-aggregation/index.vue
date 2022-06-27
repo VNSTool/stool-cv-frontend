@@ -172,9 +172,7 @@ export default Vue.extend({
             },
             {
               title: "To Improve",
-              list: [
-                "Expand vocabulary",
-              ],
+              list: ["Expand vocabulary"],
             },
           ],
         },

@@ -53,7 +53,13 @@ export default Vue.extend({
     },
     mouseUp() {
       this.$emit("selectMode");
+
       this.onMouseDown = false;
+
+      this.$gtm.push({
+        event: "select_display_mode",
+        value: this.mode,
+      });
     },
     mouseLeave() {
       this.onMouseDown = false;

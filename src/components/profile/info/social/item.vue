@@ -9,7 +9,7 @@
     @mousedown="mouseDown"
     @mouseup="mouseUp"
   >
-    <NuxtPicture :src="social.image" width="38px" height="38px"/>
+    <NuxtPicture :src="social.image" width="38px" height="38px" />
     <div
       class="max-w-0 truncate text-xl leading-6 font-light text-black-900 dark:text-grey-700 ease-in duration-500"
       :class="{
@@ -54,6 +54,11 @@ export default Vue.extend({
 
         copyToClipboard(this.social.copyContent);
       }
+
+      this.$gtm.push({
+        event: "select_contact",
+        value: this.social.id,
+      });
     },
     mouseUp: function () {
       if (this.selected) {

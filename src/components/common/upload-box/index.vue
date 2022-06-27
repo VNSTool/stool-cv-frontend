@@ -242,6 +242,7 @@ export default Vue.extend({
         });
       }
       this.uploadItems.splice(itemIndex, 1);
+      this.$emit("onRemoveItem");
     },
     uploadError(fileName) {
       this.$store.commit("notifications/add", {

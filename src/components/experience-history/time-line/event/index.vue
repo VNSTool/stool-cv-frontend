@@ -5,7 +5,7 @@
       :key="childEvent.id"
       :childEvent="childEvent"
       :selected="childEvent.id === selectedChildEvent"
-      @click.native="$emit('selectChildEvent', childEvent.id)"
+      @click.native="selectChildEvent(childEvent)"
       class="mt-4 first:mt-0"
     />
   </div>
@@ -13,6 +13,8 @@
 
 <script>
 import Vue from "vue";
+
+import { getTextContentOfHtmlText } from "~/utils/string";
 
 export default Vue.extend({
   props: {
@@ -25,6 +27,16 @@ export default Vue.extend({
       },
     },
     selectedChildEvent: String,
+  },
+  methods: {
+    selectChildEvent(childEvent) {
+      this.$emit("selectChildEvent", childEvent.id);
+
+      this.$gtm.push({
+        event: "click_experience",
+        value: getTextContentOfHtmlText(childEvent.title),
+      });
+    },
   },
 });
 </script>
