@@ -102,7 +102,7 @@ export default Vue.extend({
             {
               title: "Having",
               list: [
-                "Work with SQL database e.g. MySQL, MariaDB, etc.",
+                "Work with SQL database e.g. PostgreSQL, MariaDB, etc.",
                 "Work with NoSQL database e.g. Elasticsearch, MongoDB, Redis, etc.",
                 "Understand the benefit and side effect of indexing",
                 "Optimize heavy query",
