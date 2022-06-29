@@ -25,6 +25,8 @@ describe("ExperienceHistory", () => {
   });
 
   test("render time lines correctly", async () => {
+    const gtmEvents = [];
+
     const wrapper = mount(ExperienceHistory, {
       data: function () {
         return {
@@ -37,6 +39,7 @@ describe("ExperienceHistory", () => {
                   childEvents: [
                     {
                       id: "111",
+                      title: '<span class="font-medium">Title</span> 111',
                     },
                   ],
                 },
@@ -50,6 +53,7 @@ describe("ExperienceHistory", () => {
                   childEvents: [
                     {
                       id: "211",
+                      title: '<span class="font-medium">Title</span> 211',
                     },
                   ],
                 },
@@ -57,6 +61,13 @@ describe("ExperienceHistory", () => {
             },
           ],
         };
+      },
+      mocks: {
+        $gtm: {
+          push: function (event) {
+            gtmEvents.push(event);
+          },
+        },
       },
     });
 
@@ -66,5 +77,8 @@ describe("ExperienceHistory", () => {
     const childEvent = wrapper.find(".group");
     await childEvent.trigger("click");
     expect(wrapper.vm.selectedChildEvent).toBe("111");
+    expect(gtmEvents).toEqual([
+      { event: "click_experience", value: "Title 111" },
+    ]);
   });
 });

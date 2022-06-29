@@ -25,6 +25,7 @@
           :uploadUri="uploadUri"
           :deleteUri="deleteUri"
           @setItems="setJobDetailFiles"
+          @onAddNewItem="addJobDetailFile"
           @onRemoveItem="removeJobDetailFile"
           ref="uploadBox"
           class="flex-1"
@@ -168,14 +169,15 @@ export default Vue.extend({
   methods: {
     setJobDetailFiles(files) {
       this.jobDetailFiles = files;
-
-      this.$gtm.push({
-        event: "add_job_detail_file",
-      });
     },
     removeJobDetailFile() {
       this.$gtm.push({
         event: "remove_job_detail_file",
+      });
+    },
+    addJobDetailFile() {
+      this.$gtm.push({
+        event: "add_job_detail_file",
       });
     },
     setJobDetailUrls(urls) {

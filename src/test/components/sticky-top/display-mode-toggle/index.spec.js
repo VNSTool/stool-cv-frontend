@@ -8,9 +8,7 @@ import Vuex from "vuex";
 
 import StickyTopDisplayModeToggle from "~/components/sticky-top/display-mode-toggle/index.vue";
 import StickyTopDisplayModeToggleItem from "~/components/sticky-top/display-mode-toggle/item.vue";
-import {
-  DISPLAY_MODE_LIGHT,
-} from "~/constants/display-mode";
+import { DISPLAY_MODE_LIGHT } from "~/constants/display-mode";
 
 enableAutoDestroy(afterEach);
 const localVue = createLocalVue();
@@ -67,9 +65,18 @@ describe("StickyTopDisplayModeToggle", () => {
   });
 
   test("mutation called on changing mode", async () => {
+    const gtmEvents = [];
+
     const wrapper = mount(StickyTopDisplayModeToggle, {
       store,
       localVue,
+      mocks: {
+        $gtm: {
+          push: function (event) {
+            gtmEvents.push(event);
+          },
+        },
+      },
     });
 
     const displayModes = wrapper.findAllComponents(
@@ -77,5 +84,8 @@ describe("StickyTopDisplayModeToggle", () => {
     );
     await displayModes.at(1).trigger("mouseup");
     expect(mutations.changeDisplayMode).toHaveBeenCalled();
+    expect(gtmEvents).toEqual([
+      { event: "select_display_mode", value: "DISPLAY_MODE_DARK" },
+    ]);
   });
 });

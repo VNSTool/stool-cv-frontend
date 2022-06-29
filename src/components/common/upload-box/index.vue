@@ -200,6 +200,8 @@ export default Vue.extend({
           })
           .then((response) => {
             this.updateFileUrl(itemId, response.data.fileUrl);
+
+            this.$emit("onAddNewItem");
           })
           .catch((error) => {
             if (!this.$axios.isCancel(error)) {
