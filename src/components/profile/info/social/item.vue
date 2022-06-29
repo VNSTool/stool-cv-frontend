@@ -53,12 +53,17 @@ export default Vue.extend({
         });
 
         copyToClipboard(this.social.copyContent);
-      }
 
-      this.$gtm.push({
-        event: "select_contact",
-        value: this.social.id,
-      });
+        this.$gtm.push({
+          event: "copy_contact",
+          value: this.social.id,
+        });
+      } else {
+        this.$gtm.push({
+          event: "select_contact",
+          value: this.social.id,
+        });
+      }
     },
     mouseUp: function () {
       if (this.selected) {

@@ -13,19 +13,30 @@ describe("ExperienceHistoryTimeLineEvent", () => {
   });
 
   test("child events got rendered correctly", async () => {
+    const gtmEvents = [];
+
     const wrapper = shallowMount(ExperienceHistoryTimeLineEvent, {
       propsData: {
         event: {
           childEvents: [
             {
               id: "1",
+              title: '<span class="font-medium">Title</span> 1',
             },
             {
               id: "2",
+              title: '<span class="font-medium">Title</span> 2',
             },
           ],
         },
         selectedChildEvent: "1",
+      },
+      mocks: {
+        $gtm: {
+          push: function (event) {
+            gtmEvents.push(event);
+          },
+        },
       },
     });
 
@@ -38,5 +49,8 @@ describe("ExperienceHistoryTimeLineEvent", () => {
 
     await childEvents.at(1).trigger("click");
     expect(wrapper.emitted().selectChildEvent[0]).toEqual(["2"]);
+    expect(gtmEvents).toEqual([
+      { event: "click_experience", value: "Title 2" },
+    ]);
   });
 });

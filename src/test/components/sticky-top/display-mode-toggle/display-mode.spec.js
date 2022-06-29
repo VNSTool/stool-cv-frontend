@@ -65,10 +65,19 @@ describe("StickyTopDisplayModeToggleItem", () => {
   });
 
   test("mouse down and mouse up event trigger select mode and update the style", async () => {
+    const gtmEvents = [];
+
     const wrapper = mount(StickyTopDisplayModeToggleItem, {
       propsData: {
         mode: DISPLAY_MODE_LIGHT,
         selected: true,
+      },
+      mocks: {
+        $gtm: {
+          push: function (event) {
+            gtmEvents.push(event);
+          },
+        },
       },
     });
 
@@ -80,5 +89,8 @@ describe("StickyTopDisplayModeToggleItem", () => {
     expect(wrapper.classes()).not.toEqual(
       expect.arrayContaining(mouseDownClasses)
     );
+    expect(gtmEvents).toEqual([
+      { event: "select_display_mode", value: "DISPLAY_MODE_LIGHT" },
+    ]);
   });
 });

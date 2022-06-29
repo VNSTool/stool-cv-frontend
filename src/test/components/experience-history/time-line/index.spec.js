@@ -68,6 +68,8 @@ describe("ExperienceHistoryTimeLine", () => {
   });
 
   test("events got redered correctly", async () => {
+    const gtmEvents = [];
+
     const wrapper = mount(ExperienceHistoryTimeLine, {
       propsData: {
         events: [
@@ -76,6 +78,7 @@ describe("ExperienceHistoryTimeLine", () => {
             childEvents: [
               {
                 id: "11",
+                title: "Test 11",
               },
             ],
           },
@@ -84,10 +87,18 @@ describe("ExperienceHistoryTimeLine", () => {
             childEvents: [
               {
                 id: "21",
+                title: "Test 21",
               },
             ],
           },
         ],
+      },
+      mocks: {
+        $gtm: {
+          push: function (event) {
+            gtmEvents.push(event);
+          },
+        },
       },
     });
 
@@ -97,5 +108,8 @@ describe("ExperienceHistoryTimeLine", () => {
     const childEvent = events.at(0).find(".group");
     await childEvent.trigger("click");
     expect(wrapper.emitted().selectChildEvent[0]).toEqual(["11"]);
+    expect(gtmEvents).toEqual([
+      { event: "click_experience", value: "Test 11" },
+    ]);
   });
 });

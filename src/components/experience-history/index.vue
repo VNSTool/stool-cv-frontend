@@ -198,7 +198,7 @@ export default Vue.extend({
                       title: '<span class="font-medium">Database</span>',
                       descriptions: [
                         "ELK stack, Redis, Memcached",
-                        "MySQL, Athena with parquet files stored on AWS S3",
+                        "PostgreSQL, Athena with parquet files stored on AWS S3",
                       ],
                     },
                     {
