@@ -51,7 +51,7 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           IMAGE_TAG: ${{ github.ref_name }}-${{ env.ENV }}
         run: |
-          REGISTRY=$ECR_REGISTRY IMAGE_TAG=$IMAGE_TAG docker-compose -f ./environments/build.yml build --force-rm
+          REGISTRY=$ECR_REGISTRY IMAGE_TAG=$IMAGE_TAG docker-compose -f ./environments/build.yml build --force-rm --platform linux/arm64
           REGISTRY=$ECR_REGISTRY IMAGE_TAG=$IMAGE_TAG docker-compose -f ./environments/build.yml push
 
       - name: Set up Terraform
