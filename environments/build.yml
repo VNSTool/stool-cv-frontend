@@ -1,11 +1,15 @@
+version: "2.4"
+
 services:
   web:
     image: ${REGISTRY}/curriculum-vitae/web:${IMAGE_TAG}
     build:
       context: ../
       dockerfile: ./environments/web/Dockerfile
+    platform: linux/arm64/v8
 
   nginx:
     image: ${REGISTRY}/curriculum-vitae/nginx:${IMAGE_TAG}
     build:
       context: ./nginx
+    platform: linux/arm64/v8
