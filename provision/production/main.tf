@@ -111,7 +111,7 @@ data "aws_ami" "linux" {
   filter {
     name = "name"
 
-    values = ["stool-amazon-linux-docker-v0.4"]
+    values = ["stool-amazon-linux-arm-docker-0.1"]
   }
 
   filter {
