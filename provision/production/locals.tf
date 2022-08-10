@@ -20,7 +20,7 @@ locals {
   public_cidr_block_b         = "10.0.0.16/28"
 
   instance_type               = "t4g.small"
-  spot_price                  = "0.01"
+  spot_price                  = "0"
   ec2_role                    = "stool-ec2-curriculum-vitae-production"
   min_size                    = 1
   max_size                    = 1
