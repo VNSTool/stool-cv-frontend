@@ -38,14 +38,10 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ["@nuxt/image", "@nuxtjs/gtm"],
+  modules: ["@nuxtjs/gtm"],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
-
-  image: {
-    domains: ["https://static.stool.vn"],
-  },
 
   server: {
     host: "0.0.0.0",
