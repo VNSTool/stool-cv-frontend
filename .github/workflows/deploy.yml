@@ -58,7 +58,7 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           IMAGE_TAG: ${{ github.ref_name }}-${{ env.ENV }}
         run: |
-          REGISTRY=$ECR_REGISTRY IMAGE_TAG=$IMAGE_TAG docker buildx bake -f ./build.yml --push
+          REGISTRY=$ECR_REGISTRY IMAGE_TAG=$IMAGE_TAG docker buildx bake -f ./build.yml --set *.platform=linux/arm64 --push
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v2
