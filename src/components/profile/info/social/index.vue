@@ -19,25 +19,29 @@ export default Vue.extend({
       socials: [
         {
           id: "gmail",
-          image: "/images/socials/gmail.png",
+          image:
+            "https://static.stool.vn/images/curriculum-vitae/gmail.png",
           contactDetail: "nmtri.dev@gmail.com",
           copyContent: "nmtri.dev@gmail.com",
         },
         {
           id: "github",
-          image: "/images/socials/github.png",
+          image:
+            "https://static.stool.vn/images/curriculum-vitae/github.png",
           contactDetail: "nmtri-dev",
           copyContent: "https://github.com/nmtri-dev",
         },
         {
           id: "telegram",
-          image: "/images/socials/telegram.png",
+          image:
+            "https://static.stool.vn/images/curriculum-vitae/telegram.png",
           contactDetail: "mtri88",
           copyContent: "https://t.me/mtri88",
         },
         {
           id: "linkedin",
-          image: "/images/socials/linkedin.png",
+          image:
+            "https://static.stool.vn/images/curriculum-vitae/linkedin.png",
           contactDetail: "tri-nguyen-0970b4147",
           copyContent: "https://www.linkedin.com/in/tri-nguyen-0970b4147/",
         },
