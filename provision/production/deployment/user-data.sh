@@ -54,5 +54,5 @@ services:
         
 EOL
 
-docker login --username AWS --password $(aws ecr get-login-password --region ${AWS_REGION}) ${REGISTRY}
+su ec2-user -c "docker login --username AWS --password $(aws ecr get-login-password --region ${AWS_REGION}) ${REGISTRY}"
 docker-compose up --force-recreate -d
