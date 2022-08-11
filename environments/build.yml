@@ -6,10 +6,14 @@ services:
     build:
       context: ../
       dockerfile: ./environments/web/Dockerfile
-    platform: linux/arm64
+      x-bake:
+        platforms:
+          - linux/arm64
 
   nginx:
     image: ${REGISTRY}/curriculum-vitae/nginx:${IMAGE_TAG}
     build:
       context: ./nginx
-    platform: linux/arm64
+      x-bake:
+        platforms:
+          - linux/arm64
